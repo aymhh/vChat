@@ -8,8 +8,4 @@ function getWidth() { // credit to travis on stack overflow
     document.documentElement.clientWidth
   );
 }
-if (doParticles) {
-	if (getWidth() < 400) $.firefly({minPixel: 1,maxPixel: 2,total: 20});
-	else $.firefly({minPixel: 1,maxPixel: 3,total: 40});
-}
 

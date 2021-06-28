@@ -1,15 +1,25 @@
+@font-face {
+	src: url(../assets/fonts/ArkibalDisplayBold.ttf);
+	font-family: ArkiBold;
+}
+
+@font-face {
+	src: url(../assets/fonts/ArkibalDisplayRegular.ttf);
+	font-family: ArkiReg;
+}
+
+@font-face {
+	src: url(../assets/fonts/ArkibalDisplayThin.ttf);
+	font-family: ArkiThin;
+}
+
 * {
 	box-sizing: border-box;
 }
 
 body {
-	/*Want to change background image?*/
-	/*Upload a new one to the img folder.*/
-	/*Make sure you name it 'minecraft.jpg'*/
-	background: linear-gradient(rgba(20, 26, 35,0.55),rgba(20, 26, 35, 0.55)),
-				url("../img/minecraft.jpg") no-repeat center center fixed;
-	background-size: cover;
-	font-family: "Open Sans", Helvetica;
+	background-color: #2c2f33;
+	font-family: "ArkiReg";
 	margin: 0;
 	position: relative;
 }
@@ -43,7 +53,7 @@ p {
 }
 
 .logo img {
-	width: 225px; /* Change image size for mobile */
+	width: 225px;
 	-webkit-animation-name: logo;
 	        animation-name: logo;
 	-webkit-animation-duration: 5s;
@@ -54,69 +64,19 @@ p {
 	        animation-timing-function: ease-in-out;
 }
 
-
-@-webkit-keyframes logo {
-	0% {
-		-webkit-transform: scale(1);
-		        transform: scale(1);
-	}
-	50% {
-		-webkit-transform: scale(1.07);
-		        transform: scale(1.07);
-	}
-	100% {
-		-webkit-transform: scale(1);
-		        transform: scale(1);
-	}
-}
-
-@keyframes logo {
-	0% {
-		-webkit-transform: scale(1);
-		        transform: scale(1);
-	}
-	50% {
-		-webkit-transform: scale(1.07);
-		        transform: scale(1.07);
-	}
-	100% {
-		-webkit-transform: scale(1);
-		        transform: scale(1);
-	}
-}
-
-.playercount {
-	display: inline-block;
-	margin: 20px 15px 0 15px;
-	padding: 2px 0;
-	background-color: rgba(15, 199, 209, 0.75);
-	font-size: 1em;
-	color: white;
-	text-align: center;
-	border-radius: 5px 0 5px 0;
-	line-height: 27px;
-}
-
-.playercount > p > span {
-	font-weight: bold;
-	padding: 1px 4px;
-	border-radius: 3px;
-	background: rgba(9, 150, 158, 0.7);
-	margin: 0 2px;
+.loginButton {
+	fill: #6689c8;
+	border-color: white;
+	position: absolute;
 }
 
 .extrapad {
 	padding: 0;
 }
 
-.ip {
-	cursor: pointer;
-}
 
 .items {
 	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
 	-ms-flex-pack: distribute;
 	    justify-content: space-around;
 	-ms-flex-preferred-size: 100px;
@@ -139,12 +99,13 @@ p {
 }
 
 .img {
-	width: 80%;
+	width: 230%;
+	
 }
 
-.title {
-	font-weight: bold;
-	font-size: 17px;
+.header {
+	font-family: ArkiBold;
+	font-size: 50px;
 	color: white;
 }
 
@@ -153,16 +114,16 @@ p {
 	font-size: 12px;
 }
 
-.title,
-.subtitle {
-	margin: 0;
-	padding: 0;
+.subtext {
+	color: white;
+	font-size: 20px;
+	font-family: ArkiThin;
 }
 
 
 @media(min-width: 400px) {
 	.logo img {
-		width: 290px; /* Change image size for mid sized devices */
+		width: 290px; 
 	}
 
 	.playercount {
@@ -185,7 +146,7 @@ p {
 	}
 
 	.logo img {
-		width: 470px; /* Change image size for desktop */
+		width: 470px; 
 	}
 
 	.logo {
@@ -196,18 +157,6 @@ p {
 	}
 	.items {
 		padding: 30px 0 20px 0;
-	}
-	.playercount {
-		font-size: 1.22em;
-		padding: 10px;
-	}
-
-	.extrapad {
-		padding: 0 42.5px;
-	}
-
-	.playercount > p > span {
-		padding: 4px 7px;
 	}
 }
 
