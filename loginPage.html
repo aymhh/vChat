@@ -10,6 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/stylesheet.css">
+		<script src="./js/main.js"></script>
 	</head>
 	<body>
 
@@ -19,14 +20,8 @@
 			</a>
 		</div>
 
-		<div class="accessButtonsContainer"> 
-			<a href="./forgot.html">
-				<img class="accessButtons" src="./assets/images/testPlane.png" style="position:fixed; top: 10%; right: -5px;" height="77" width="190">
-					<div class="accessButtonsText" style="position:fixed; top: 12%; right: 1.5%;">forgot?</div>
-			</a>
-		</div>
 
-		<form class="loginContainer">
+		<form class="loginContainer" method="GET" action="./profilePage.html">
 			
 			<div class="headerBarLogin">
 				<b>login<b>
@@ -34,31 +29,36 @@
 
 			<div class="loginBarFonts" style="top: 13%;">
 				<i>username<i>
-			</div>
+			</div> 
 
-			<input class="loginBar" 
+			<!--Begining on the Username Input Field-->
+			<input class="loginBar"  
 				type="text"
+				id="uid"
 				placeholder=". . ."
-				pattern="[A-Za-z]{3}"
-				title="3 letter country code please."
 				required
 				style="margin-top: 16%;">
 
+			<!--Begining on the Password Input Field-->
 			<div class="loginBarFonts" style="top: 4%;">
 				<i>password<i>
 			</div>
-
 			<input class="loginBar" 
 				type="password" 
 				placeholder=". . ."
-				id="pass" 
+				id="pwd" 
 				name="password" 
+				autocomplete="on"
 				required 
 				style="margin-top: 5%;" >
+			</input>
 
-			<button class="loginButton" style="margin-top: 50px;">login!</button>
-
+			<!--This is the button element-->
+			<button 
+				id="loginButton" 
+				class="loginButton" 
+				onclick="loginValidator(event)" 
+				style="margin-top: 50px;">login!</button>
 		</form>
-
 	</body>
 </html>
