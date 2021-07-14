@@ -7,15 +7,21 @@ function logThisShit() {
 }
 
 
-function loginValidator(event) {
-    event.preventDefault()
+function loginValidator() {
+    const submitButton = document.getElementById("form");
+    const username = document.getElementById('uid')
+    const password = document.getElementById('pwd')
 
-    const submitButton = document.getElementById("loginButton");
-    const username = document.getElementById('uid')   
+    console.log(`${username.value} is the inputed value.`)
+    console.log(`${password.value} is the inputed value.`)
 
-    if(username.value === "correct") {
-        
-    }
-
+    submitButton.addEventListener('submit', function (e) {
+        if (username.value === "thisIsTheUsername" && password.value === "thisIsTheUsername") {
+            console.log("matching login Details entered!");
+        } else {
+            e.preventDefault();
+           alert('preventDefault');
+        }
+    })
 }
 
