@@ -1,0 +1,23 @@
+{
+  "name": "vchat",
+  "version": "1.0.0",
+  "description": "my SAT project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aymhh/vChat.git"
+  },
+  "author": "aymhh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aymhh/vChat/issues"
+  },
+  "homepage": "https://github.com/aymhh/vChat#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "node.js": "0.0.1-security"
+  }
+}
