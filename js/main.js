@@ -1,11 +1,21 @@
+function logThisShit() {
+    console.log(document.getElementById("pfp").value);
+    console.log(document.getElementById("email").value);
+    console.log(document.getElementById("uid").value);
+    console.log(document.getElementById("pwd").value);
+    
+}
 
-function getWidth() { // credit to travis on stack overflow
-  return Math.max(
-    document.body.scrollWidth,
-    document.documentElement.scrollWidth,
-    document.body.offsetWidth,
-    document.documentElement.offsetWidth,
-    document.documentElement.clientWidth
-  );
+
+function loginValidator(event) {
+    event.preventDefault()
+
+    const submitButton = document.getElementById("loginButton");
+    const username = document.getElementById('uid')   
+
+    if(username.value === "correct") {
+        
+    }
+
 }
 
