@@ -10,6 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/stylesheet.css">
+		<script src="./js/main.js"></script>
 	</head>
 	<body>
 
@@ -19,14 +20,8 @@
 			</a>
 		</div>
 
-		<div class="accessButtonsContainer"> 
-			<a href="./forgot.html">
-				<img class="accessButtons" src="./assets/images/testPlane.png" style="position:fixed; top: 10%; right: -5px;" height="77" width="190">
-					<div class="accessButtonsText" style="position:fixed; top: 12%; right: 1.5%;">forgot?</div>
-			</a>
-		</div>
 
-		<form method="post" action="/post" class="signUpContainer">
+		<form class="loginContainer" method="GET" action="./profilePage.html">
 			
 			<label class="headerBarLogin">
 				<b>sign up<b>
@@ -69,7 +64,7 @@
 				style="margin-top: 6%;" >
 			</input>
 
-			<button class="loginButton" style="margin-top: 50px;">login!</button>
+			<button class="loginButton" style="margin-top: 50px;" onclick="">login!</button>
 
 		</form>
 
