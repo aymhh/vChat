@@ -1,81 +1,70 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<title>vChat - Login Page</title>
-		<meta name="description" content="SAT Project">
-		<meta property="og:title" content="vChat - Official Website">
-		<meta property="og:site_name" content="vChat">
-		<meta property="og:description" content="SAT Project">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/stylesheet.css">
-		<script src="./js/main.js"></script>
-	</head>
-	<body>
 
-		<div class="logo2">	
-			<a href="./index.html">
-				<img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
-			</a>
+<head>
+	<title>vChat - Login Page</title>
+	<meta name="description" content="SAT Project">
+	<meta property="og:title" content="vChat - Official Website">
+	<meta property="og:site_name" content="vChat">
+	<meta property="og:description" content="SAT Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<script src="./js/main.js"></script>
+</head>
+
+<body>
+
+	<div class="logo2">
+		<a href="./index.html">
+			<img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%"
+				alt="vChatLogo">
+		</a>
+	</div>
+
+
+	<form class="accountProfileContainer" action="profilePage.html" method="GET">
+
+		<label class="profileAccountHeader">
+			<img style="position: relative; top: -35px;" class="userIcon2"
+				src="https://i.pinimg.com/originals/f1/6f/8a/f16f8a0adc014dc33ba8db16379fa230.gif" width="200"
+				height="200" alt="profilePicture">
+		</label>
+
+		<div class="loginBarFonts" style="top: 13%;">
+			<i><abbr
+					title="Paste the direct link to the image, you can upload your image to discord and 'Copy Link' for free and easy hosting!">change
+					profile picture?</abbr></i>
 		</div>
 
-
-		<form class="accountProfileContainer" action="profilePage.html" method="GET">
-			
-			<label class="profileAccountHeader">
-				<img style="position: relative; top: -35px;" class= "userIcon2" src="https://i.pinimg.com/originals/f1/6f/8a/f16f8a0adc014dc33ba8db16379fa230.gif" width="200" height="200" alt="profilePicture">
-			</label>
-
-			<div class="loginBarFonts" 
-				style="top: 13%;">
-				<i><abbr title="Paste the direct link to the image, you can upload your image to discord and 'Copy Link' for free and easy hosting!">change profile picture?</abbr></i>
-			</div>
-
-			<input class="loginBar"
-				id="pfp"
-				type="url"
-				style="margin-top: 16%;"
-				placeholder="paste direct url of the image"
-			>
+		<input class="loginBar" id="pfp" type="url" style="margin-top: 16%;"
+			placeholder="paste direct url of the image">
 
 
-			<div class="loginBarFonts" 
-				style="top: 2%;">
-				<i>email address</i>
-			</div>
+		<div class="loginBarFonts" style="top: 2%;">
+			<i>email address</i>
+		</div>
 
-			<input class="loginBar"
-				id="email" 	
-				type="email"
-				style="margin-top: 2%;"
-			>
+		<input class="loginBar" id="email" type="email" style="margin-top: 2%;">
 
 
-			<div class="loginBarFonts" 
-				style="margin-top: 2%;">
-				<i>username<i>
-			</div>
+		<div class="loginBarFonts" style="margin-top: 2%;">
+			<i>username<i>
+		</div>
 
-			<input class="loginBar" 
-				id="uid" 
-				type="text"
-				title="Your new username must be between 8-16 characters, number and special characters (! @ # $) are acceptable."
-			>
+		<input class="loginBar" id="uid" type="text"
+			title="Your new username must be between 8-16 characters, number and special characters (! @ # $) are acceptable.">
 
-			<div class="loginBarFonts"
-				style="margin-top: 2%;">
-				<i>password<i>
-			</div>
+		<div class="loginBarFonts" style="margin-top: 2%;">
+			<i>password<i>
+		</div>
 
-			<input class="loginBar" 
-				id="pwd"
-				type="password" 
-				placeholder="Type in your new password"
-				title="Your new password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted."
-			>
+		<input class="loginBar" id="pwd" type="password" placeholder="Type in your new password"
+			title="Your new password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">
 
-			<button class="saveButton" onclick="logThisShit()"  actistyle="margin-bottom: 25%;">Save!</button>
-		</form>
-	</body>
+		<button class="saveButton" onclick="logThisShit()" actistyle="margin-bottom: 25%;">Save!</button>
+	</form>
+</body>
+
 </html>
