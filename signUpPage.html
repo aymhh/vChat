@@ -1,72 +1,64 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<title>vChat - Login Page</title>
-		<meta name="description" content="SAT Project">
-		<meta property="og:title" content="vChat - Official Website">
-		<meta property="og:site_name" content="vChat">
-		<meta property="og:description" content="SAT Project">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/stylesheet.css">
-		<script src="./js/main.js"></script>
-	</head>
-	<body>
 
-		<div class="logo2">	
-			<a href="./index.html">
-				<img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
-			</a>
+<head>
+	<title>vChat - Login Page</title>
+	<meta name="description" content="SAT Project">
+	<meta property="og:title" content="vChat - Official Website">
+	<meta property="og:site_name" content="vChat">
+	<meta property="og:description" content="SAT Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<script src="./js/main.js"></script>
+</head>
+
+<body>
+
+	<div class="logo2">
+		<a href="./index.html">
+			<img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%"
+				alt="vChatLogo">
+		</a>
+	</div>
+
+
+	<form class="loginContainer" style="height: 79%;" method="GET" action="./profilePage.html">
+
+		<label class="headerBarLogin">
+			<b>sign up<b>
+		</label>
+
+		<div class="loginBarFonts" style="top: 4.5%;">
+			<i><abbr title="Since this is a demo, you can use websites such as 10minutesmail">email address</abbr><i>
 		</div>
 
-
-		<form class="loginContainer" method="GET" action="./profilePage.html">
-			
-			<label class="headerBarLogin">
-				<b>sign up<b>
-			</label>
-
-			<div class="loginBarFonts" 
-				style="top: 4.5%;">
-				<i><abbr title="Since this is a demo, you can use websites such as 10minutesmail">email address</abbr><i>
-			</div>
-
-			<input class="loginBar" 
-				type="email"
-				placeholder=". . ."
-				required
-				style="margin-top: 7%;">
-			</input>
+		<input class="loginBar" type="email" placeholder=". . ." required style="margin-top: 7%;">
+		</input>
 
 
-			<div class="loginBarFonts" 
-				style="top: 4%;">
-				<i><abbr title="Your username must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">username</abbr><i>
-			</div>
+		<div class="loginBarFonts" style="top: 4%;">
+			<i><abbr
+					title="Your username must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">username</abbr><i>
+		</div>
 
-			<input class="loginBar" 
-				placeholder=". . ."
-				required
-				pattern="[a-zA-Z0-9\!\$\#\@\.]"
-				style="margin-top: 6%;">
-			</input>
+		<input class="loginBar" placeholder=". . ." required pattern="[a-zA-Z0-9\!\$\#\@\.]" style="margin-top: 6%;">
+		</input>
 
-			<div class="loginBarFonts" style="top: 4%;">
-				<i><abbr title="Your password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">password</abbr><i>
-			</div>
+		<div class="loginBarFonts" style="top: 4%;">
+			<i><abbr
+					title="Your password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">password</abbr><i>
+		</div>
 
-			<input class="loginBar" 
-				type="password" 
-				placeholder=". . ."
-				required 
-				pattern="[a-zA-Z0-9\!\$\#\@\.]"
-				style="margin-top: 6%;" >
-			</input>
+		<input class="loginBar" type="password" placeholder=". . ." required pattern="[a-zA-Z0-9\!\$\#\@\.]"
+			style="margin-top: 6%;">
+		</input>
 
-			<button class="loginButton" style="margin-top: 50px;" onclick="">login!</button>
+		<button class="loginButton" style="margin-top: 8%;" onclick="">login!</button>
 
-		</form>
+	</form>
 
-	</body>
+</body>
+
 </html>

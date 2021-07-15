@@ -1,64 +1,52 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<title>vChat - Login Page</title>
-		<meta name="description" content="SAT Project">
-		<meta property="og:title" content="vChat - Official Website">
-		<meta property="og:site_name" content="vChat">
-		<meta property="og:description" content="SAT Project">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="css/stylesheet.css">
-		<script src="./js/main.js"></script>
-	</head>
-	<body>
 
-		<div class="logo2">	
-			<a href="./index.html">
-				<img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
-			</a>
-		</div>
+  <head>
+    <title>vChat - Login Page</title>
+    <meta name="description" content="SAT Project">
+    <meta property="og:title" content="vChat - Official Website">
+    <meta property="og:site_name" content="vChat">
+    <meta property="og:description" content="SAT Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <script src="./js/main.js"></script>
+  </head>
+
+  <body>
+
+    <div class="logo2">
+      <a href="./index.html">
+        <img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
+      </a>
+    </div>
 
 
-		<form class="loginContainer" method="GET" action="./profilePage.html">
-			
-			<div class="headerBarLogin">
-				<b>login<b>
-			</div>
+    <form id="form" class="loginContainer" method="GET" action="./profilePage.html">
 
-			<div class="loginBarFonts" style="top: 13%;">
-				<i>username<i>
-			</div> 
+      <div class="headerBarLogin">
+        <b>login<b>
+      </div>
 
-			<!--Begining on the Username Input Field-->
-			<input class="loginBar"  
-				type="text"
-				id="uid"
-				placeholder=". . ."
-				required
-				style="margin-top: 16%;">
+      <div class="loginBarFonts" style="top: 13%;">
+        <i>username<i>
+      </div>
 
-			<!--Begining on the Password Input Field-->
-			<div class="loginBarFonts" style="top: 4%;">
-				<i>password<i>
-			</div>
-			<input class="loginBar" 
-				type="password" 
-				placeholder=". . ."
-				id="pwd" 
-				name="password" 
-				autocomplete="on"
-				required 
-				style="margin-top: 5%;" >
-			</input>
+      <!--Begining on the Username Input Field-->
+      <input class="loginBar" type="text" id="uid" placeholder=". . ." required style="margin-top: 16%;">
 
-			<!--This is the button element-->
-			<button 
-				id="loginButton" 
-				class="loginButton" 
-				onclick="loginValidator(event)" 
-				style="margin-top: 50px;">login!</button>
-		</form>
-	</body>
+      <!--Begining on the Password Input Field-->
+      <div class="loginBarFonts" style="top: 4%;">
+        <i>password<i>
+      </div>
+      <input class="loginBar" type="password" placeholder=". . ." id="pwd" name="password" required style="margin-top: 5%;">
+      </input>
+
+      <!--This is the button element-->
+      <button 
+	  type="submit" id="loginButton" class="loginButton" onclick="loginValidator()" style="margin-top: 50px;">login!</button>
+    </form>
+  </body>
+
 </html>
