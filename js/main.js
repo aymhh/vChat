@@ -1,33 +1,31 @@
-function findName() {
-    const xhr = new XMLHttpRequest();
+const pouchDB = require('pouchdb')
+const db = new pouchDB('assets/data')
 
-    xhr.onreadystatechange = function () {
-        if(xhr.readyState === 4) {
-            if(xhr.readyState === 200) {
-                console.log(xhr.responseText)
-            }
+function userContructorSchema() {
 
-            if(xhr.readyState === 404) {
-                console.log("THERE IS NOTHIGN HERE I CAN'T DISPLAY ANYTHING IF THERE IS NOTHING HERE 4000000000000004 ")
-            }
-        }
+    const email = document.getElementById("email");
+    const username = document.getElementById("uid");
+    const password = document.getElementById("pwd");
+    const icon = document.getElementById("pfp");
+
+
+    const userDetails = {
+        _id: username.value,
+        name: username.value,
+        email: email.value,
+        password: password.value,
+        icon: icon.value
     }
-
-    xhr.open('get', )
 }
 
+db.remove('aymhh', function(err, response) {
+    if (err) { return console.log(err); }
+});
+
+  
 
 
-
-function logThisShit() {
-    console.log(document.getElementById("pfp").value);
-    console.log(document.getElementById("email").value);
-    console.log(document.getElementById("uid").value);
-    console.log(document.getElementById("pwd").value);
-
-}
-
-
+// very fucking usefull
 function loginValidator() {
     const submitButton = document.getElementById("form");
     const username = document.getElementById('uid')
