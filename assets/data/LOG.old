@@ -1,2 +1,5 @@
-2021/07/15-20:11:53.616 4bfc Recovering log #19
-2021/07/15-20:11:53.616 4bfc Level-0 table #21: started
+2021/07/17-00:09:37.314 18b4 Recovering log #67
+2021/07/17-00:09:37.314 18b4 Level-0 table #70: started
+2021/07/17-00:09:37.415 18b4 Level-0 table #70: 237 bytes OK
+2021/07/17-00:09:37.487 18b4 Delete type=0 #67
+2021/07/17-00:09:37.487 18b4 Delete type=3 #65
