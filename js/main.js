@@ -1,30 +1,29 @@
-const pouchDB = require('pouchdb')
-const db = new pouchDB('assets/data')
-
-function userContructorSchema() {
+function userContructorSignUp() {
 
     const email = document.getElementById("email");
     const username = document.getElementById("uid");
     const password = document.getElementById("pwd");
-    const icon = document.getElementById("pfp");
+
+    console.log(`
+    ${username.value} is the id
+    ${email.value} is the email
+    ${username.value} is the username
+    ${password.value} is the password
+    `)
 
 
-    const userDetails = {
-        _id: username.value,
+    db.collection(username.value).add({
+        id: username.value,
         name: username.value,
         email: email.value,
         password: password.value,
-        icon: icon.value
-    }
+        icon: "https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
+      })
+    
+    return console.log("PLEASE WORK")
 }
 
-db.remove('aymhh', function(err, response) {
-    if (err) { return console.log(err); }
-});
-
   
-
-
 // very fucking usefull
 function loginValidator() {
     const submitButton = document.getElementById("form");
