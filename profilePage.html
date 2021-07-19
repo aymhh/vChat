@@ -11,25 +11,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/stylesheet.css">
+	
 	<script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-	
-	<script type="text/javascript">
-
-		$( document ).ready(function() {
-			const docCookie = Cookie.get('username')
-			console.log(docCookie + "this is the cookie that was gotten")
-
-			db.get('users').doc(docCookie).then(document => {
-				console.log(document)
-			})
-		});		
+	<script src="https://code.jquery.com/jquery-3.6.0.js" 
+			integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+			crossorigin="anonymous">
 	</script>
-
 </head>
 
 <body>
+
+	<script>
+		let pageCookie = Cookies.get('cookieUsername');
+		console.log(pageCookie + " cookie fetched");
+	</script>
+
 
 	<div class="logo2">
 		<a href="./index.html">
@@ -46,18 +43,31 @@
 		</div>
 
 		<div class="profileContainer">
-			<div class="profileItem">
-				<img class="userIcon" src="assets/images/testIcon.jpg" width="150" height="150" alt="cameraIcon">
-				<p class="profileHeading" style="font-size: 35px;"><b>account</b></p>
-				<p class="profileSubtitle" style="font-size: 20px;"><b>information</b></p>
-			</div>
 
-			<div class="profileItem">
-				<img src="assets/images/plusIcon.png" width="150" height="150" alt="cameraIcon">
-				<p class="profileHeading" style="font-size: 35px;"><b>create</b></p>
-				<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
-			</div>
+			<a href="./accountProfile.html">
+				<div class="profileItem">
+					<img class="userIcon" id="userIcon" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="cameraIcon">
+					<p class="profileHeading" style="font-size: 35px;"><b>account</b></p>
+					<p class="profileSubtitle" style="font-size: 20px;"><b>information</b></p>
+				</div>
+			</a>
 
+			<script>
+
+				const db = new Localbase("vChatDataBase");
+
+				db.collection('users').doc({ username: pageCookie }).get().then(doc => {
+					document.getElementById("userIcon").src = doc[`icon`];
+				})
+
+			</script>
+			<a href="./soonTM.html">
+				<div class="profileItem">
+					<img src="assets/images/plusIcon.png" width="150" height="150" alt="cameraIcon">
+					<p class="profileHeading" style="font-size: 35px;"><b>create</b></p>
+					<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
+				</div>
+			</a>
 		</div>
 	</div>
 </body>
