@@ -79,7 +79,6 @@
 				type="text"
 				required
 				readonly
-				read
 				value="username goes here"
 				>
 
@@ -91,10 +90,11 @@
 				id="pwd" 
 				type="password" 
 				auto-complete="on" 
-				placeholder="Type in your new password"
 				required
+				minlength="6" 
+				pattern="[A-Za-z0-9_]{6,16}"
 				value="user password goes here"
-				title="Your password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">
+				title="Your username must be between 6-16 characters, numbers and only underscores are accepted.">
 
 		<script>
 			const db = new Localbase("vChatDataBase");
