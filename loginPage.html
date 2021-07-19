@@ -24,7 +24,7 @@
     </div>
 
 
-    <form id="form" class="loginContainer" method="GET" action="">
+    <form id="form" class="loginContainer" method="GET" action="./profilePage.html">
 
       <div class="headerBarLogin">
         <b>login<b>
@@ -46,47 +46,41 @@
 
 
       <script>
-        function loginValidator() {
+          
           const submitButton = document.getElementById("form");
-          const username = document.getElementById('uid')
-          const password = document.getElementById('pwd')
+          const username = document.getElementById('uid');
+          const password = document.getElementById('pwd');
 
-          const db = new Localbase("vChatDataBase")
+        submitButton.addEventListener('submit', function (e) {
 
+          e.preventDefault();
 
-          submitButton.addEventListener('submit', function (e) {
-
-            console.log(`Inputed field uid: ${username.value}`)
-            console.log(`Inputed field pwd: ${password.value}`)
-
-            db.config.debug = false
-
-
-            db.collection('users').doc({ username: username.value }).get().then(document => {
-              if(document === undefined) {
-                alert("No user exists with this username!")
-                return e.preventDefault()
-              } else {
-
-                console.log(` database values: ${document['username']} + ${document['password']}`)
-                console.log(` input values: ${username.value} + ${password.value}`)
-
-                  if(document['password'] !== password.value ) {
-                    alert("Incorrect password")
-                    return e.preventDefault()
-                  } else {
-                    alert("All details matched")
-                    return e.preventDefault()
-                  }
+    
+          const db = new Localbase("vChatDataBase");
+    
+          console.log(`Inputed field uid: ${username.value}`)
+          console.log(`Inputed field pwd: ${password.value}`)
+    
+          db.config.debug = false
+          
+          
+          db.collection('users').doc({ username: username.value }).get().then(document => {
+            if(document === undefined) {
+              alert("No user exist's with this username!")
+            } else {
+                if(document['password'] !== password.value ) {
+                  alert("Incorrect password!")
+                } else {
+                  Cookies.set("cookieUsername", document['username'])
+                  return window.location.href = './profilePage.html'
+                }
               }
             })
           })
-        }
-      </script>
-      
+    </script>
+          
       <!--This is the button element-->
-      <button 
-	  type="submit" id="loginButton" class="loginButton" onclick="loginValidator()" style="margin-top: 50px;">login!</button>
+      <button type="submit" id="loginButton" class="loginButton" style="margin-top: 50px;">login!</button>
     </form>
   </body>
 
