@@ -252,3 +252,13 @@ html, body {
 	font-size: 70px;
 	color: white;
 }
+
+.soontm:hover {
+	font-size: 0;
+}
+
+.soontm:hover::after {
+	content: attr(data-hover);
+	font-size: 70px;
+	color: white;
+}
