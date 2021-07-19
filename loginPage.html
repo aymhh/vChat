@@ -12,6 +12,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/stylesheet.css">
     <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
   </head>
 
   <body>
@@ -23,7 +24,7 @@
     </div>
 
 
-    <form id="form" class="loginContainer" method="GET" action="./profilePage.html">
+    <form id="form" class="loginContainer" method="GET" action="">
 
       <div class="headerBarLogin">
         <b>login<b>
@@ -40,9 +41,49 @@
       <div class="loginBarFonts" style="top: 4%;">
         <i>password<i>
       </div>
-      <input class="loginBar" type="password" placeholder=". . ." id="pwd" name="password" required style="margin-top: 5%;">
+      <input class="loginBar" type="password" autocomplete="on" placeholder=". . ." id="pwd" name="password" required style="margin-top: 5%;">
       </input>
 
+
+      <script>
+        function loginValidator() {
+          const submitButton = document.getElementById("form");
+          const username = document.getElementById('uid')
+          const password = document.getElementById('pwd')
+
+          const db = new Localbase("vChatDataBase")
+
+
+          submitButton.addEventListener('submit', function (e) {
+
+            console.log(`Inputed field uid: ${username.value}`)
+            console.log(`Inputed field pwd: ${password.value}`)
+
+            db.config.debug = false
+
+
+            db.collection('users').doc({ username: username.value }).get().then(document => {
+              if(document === undefined) {
+                alert("No user exists with this username!")
+                return e.preventDefault()
+              } else {
+
+                console.log(` database values: ${document['username']} + ${document['password']}`)
+                console.log(` input values: ${username.value} + ${password.value}`)
+
+                  if(document['password'] !== password.value ) {
+                    alert("Incorrect password")
+                    return e.preventDefault()
+                  } else {
+                    alert("All details matched")
+                    return e.preventDefault()
+                  }
+              }
+            })
+          })
+        }
+      </script>
+      
       <!--This is the button element-->
       <button 
 	  type="submit" id="loginButton" class="loginButton" onclick="loginValidator()" style="margin-top: 50px;">login!</button>
