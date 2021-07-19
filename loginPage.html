@@ -35,13 +35,25 @@
       </div>
 
       <!--Begining on the Username Input Field-->
-      <input class="loginBar" type="text" id="uid" placeholder=". . ." required style="margin-top: 16%;">
+      <input  class="loginBar" 
+              type="text" 
+              id="uid" 
+              placeholder=". . ." 
+              required 
+              style="margin-top: 16%;">
 
       <!--Begining on the Password Input Field-->
       <div class="loginBarFonts" style="top: 4%;">
         <i>password<i>
       </div>
-      <input class="loginBar" type="password" autocomplete="on" placeholder=". . ." id="pwd" name="password" required style="margin-top: 5%;">
+      <input  class="loginBar" 
+              type="password" 
+              autocomplete="on" 
+              placeholder=". . ." 
+              id="pwd" 
+              name="password" 
+              required 
+              style="margin-top: 5%;">
       </input>
 
 
@@ -66,7 +78,7 @@
           
           db.collection('users').doc({ username: username.value }).get().then(document => {
             if(document === undefined) {
-              alert("No user exist's with this username!")
+              alert("No user exists with this username!")
             } else {
                 if(document['password'] !== password.value ) {
                   alert("Incorrect password!")

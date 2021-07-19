@@ -45,44 +45,69 @@
 
     <div class="loginBarFonts" style="top: 4%;">
       <i><abbr
-          title="Your username must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">username</abbr><i>
+          title="Your username must be between 4-16 characters, numbers and special characters (! @ # ?) are accepted.">username</abbr><i>
     </div>
 
-    <input class="loginBar" id="uid" placeholder=". . ." minlength="4" required style="margin-top: 6%;">
+    <input  class="loginBar" 
+            id="uid" 
+            placeholder=". . ." 
+            minlength="4" 
+            required 
+            title="Your username must be between 4-16 characters, numbers and only underscores are accepted."
+            pattern="[A-Za-z0-9_]{4,16}"
+            style="margin-top: 6%;">
     </input>
 
     <div class="loginBarFonts" style="top: 4%;">
       <i><abbr
-          title="Your password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">password</abbr><i>
+          title="Your password must be between 6-16 characters, numbers and special characters (! @ # ?) are accepted.">password</abbr><i>
     </div>
 
-    <input class="loginBar" id="pwd" autocomplete="on" type="password" minlength="6" placeholder=". . ." required
-      style="margin-top: 6%;">
+    <input  class="loginBar" 
+            id="pwd" 
+            autocomplete="on" 
+            type="password" 
+            minlength="6" 
+            title="Your username must be between 6-16 characters, numbers and only underscores are accepted."
+            pattern="[A-Za-z0-9_]{6,16}"
+            placeholder=". . ." 
+            required
+            style="margin-top: 6%;">
     </input>
 
     <script>
-      const db = new Localbase("vChatDataBase")
-
-      function userContructorSignUp() {
-
+      const loginButton = document.getElementById("signUpForm");
       const email = document.getElementById("email");
       const username = document.getElementById("uid");
       const password = document.getElementById("pwd");
+      const db = new Localbase("vChatDataBase")
+      db.config.debug = false
+
+       
+      loginButton.addEventListener('submit', function (e) {
+
+        e.preventDefault();
 
 
-      db.collection('users').add({
-        email: email.value,
-        username: username.value,
-        password: password.value,
-        icon: "https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
-      }, username.value)
+        db.collection('users').doc({ username: username.value }).get().then(document => {
+        if(document === undefined) {
+          db.collection('users').add({
+             email: email.value,
+             username: username.value,
+             password: password.value,
+             icon: "https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
+           }, username.value)
 
-      Cookies.set('cookieUsername', username.value)
-      console.log(Cookies.get())
-    }
+            Cookies.set('cookieUsername', username.value)
+            return window.location.href = './profilePage.html'
+          } else {
+            alert("An account with this username already exists. Please pick a different username.")
+          }
+        })
+      })
     </script>
     
-    <button class="loginButton" style="margin-top: 8%;" onclick="userContructorSignUp()">login!</button>
+    <button type="submit" id=loginButton" class="loginButton" style="margin-top: 8%;" >login!</button>
 
   </form>
 
