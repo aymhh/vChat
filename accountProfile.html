@@ -12,10 +12,11 @@
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="css/stylesheet.css">
 	<script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
 
 </head>
 
-<body onload="doThings()">
+<body>
 	
 
 	<div class="logo2">
@@ -26,12 +27,17 @@
 	</div>
 
 
-	<form class="accountProfileContainer" action="profilePage.html" method="GET">
+	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET">
 
 		<label class="profileAccountHeader">
-			<img style="position: relative; top: -35px;" class="userIcon2"
-				src="./assets/images/testIcon.jpg" width="200"
-				height="200" alt="profilePicture">
+			<img 	style="position: relative; top: -35px;" 
+					class="userIcon2"
+					id="profileAccountHeader"
+					src="./assets/images/testIcon.jpg" 
+					width="200"
+					height="200" 
+					alt="profilePicture"
+					>
 		</label>
 
 		<div class="loginBarFonts" style="top: 13%;">
@@ -40,32 +46,91 @@
 					profile picture?</abbr></i>
 		</div>
 
-		<input class="loginBar" id="pfp" type="url" style="margin-top: 16%;"
-			placeholder="paste direct url of the image">
-
+		<input 	class="loginBar" 
+				required
+				id="pfp" 
+				type="url" 
+				style="margin-top: 16%;"
+				placeholder="paste direct url of the image"
+				value="user profile picture link goes here"
+				>
+		
 
 		<div class="loginBarFonts" style="top: 2%;">
 			<i>email address</i>
 		</div>
 
-		<input class="loginBar" id="email" type="email" style="margin-top: 2%;">
+		<input 	class="loginBar"
+				required
+				id="email" 
+				type="email" 
+				style="margin-top: 2%;"
+				value="user email goes here"
+				>
 
 
 		<div class="loginBarFonts" style="margin-top: 2%;">
-			<i>username<i>
+			<i><abbr
+				title="You  are not able to change your username. If you wish to go under a new allias, create a new account.">username</abbr><i>
 		</div>
 
-		<input class="loginBar" id="uid" type="text"
-			title="Your new username must be between 8-16 characters, number and special characters (! @ # $) are acceptable.">
+		<input 	class="loginBar" 
+				id="uid" 
+				type="text"
+				required
+				read
+				value="username goes here"
+				>
 
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i>password<i>
 		</div>
 
-		<input class="loginBar" id="pwd" type="password" placeholder="Type in your new password"
-			title="Your new password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">
+		<input class="loginBar" 
+				id="pwd" 
+				type="password" 
+				auto-complete="on" 
+				placeholder="Type in your new password"
+				required
+				value="user password goes here"
+				title="Your password must be between 8-16 characters, numbers and special characters (! @ # ?) are accepted.">
 
-		<button class="saveButton" onclick="logThisShit()" actistyle="margin-bottom: 25%;">Save!</button>
+		<script>
+			const db = new Localbase("vChatDataBase");
+			const pageCookie = Cookies.get('cookieUsername')
+			const updateButton = document.getElementById("accProfileForm");
+			
+			
+			db.collection('users').doc({ username: pageCookie }).get().then(doc => {
+				document.getElementById("profileAccountHeader").src = doc[`icon`]
+				document.getElementById("pfp").value = doc[`icon`];
+				document.getElementById("email").value = doc[`email`];
+				document.getElementById("uid").value = doc[`username`];
+				document.getElementById("pwd").value = doc[`password`];
+			})
+
+			updateButton.addEventListener('submit', function (e) {
+				e.preventDefault();
+
+				const icon = document.getElementById("pfp");
+				const email = document.getElementById("email");
+				const username = document.getElementById("uid");
+				const password = document.getElementById("pwd");
+
+
+				db.collection('users').doc({ username: username.value }).set({
+				  email: email.value, 
+				  username: username.value,
+				  password: password.value,
+				  icon: icon.value
+				})
+
+				alert("Your details have been updated!")
+				return window.location.href = './profilePage.html'
+			})
+		</script>
+
+		<button type="submit" id="saveButton" class="saveButton" style="margin-bottom: 25%;">save!</button>
 	</form>
 </body>
 
