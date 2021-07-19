@@ -72,7 +72,7 @@
 
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i><abbr
-				title="You  are not able to change your username. If you wish to go under a new allias, create a new account.">username</abbr><i>
+				title="You are not able to change your username. If you wish to go under a new allias, create a new account.">username</abbr><i>
 		</div>
 
 		<input 	class="loginBar" 
@@ -93,10 +93,9 @@
 				auto-complete="on" 
 				required
 				minlength="6" 
-				pattern="[A-Za-z0-9_]{6,16}"
+				pattern="[A-Za-z0-9_]"
 				value="user password goes here"
-				title="Your username must be between 6-16 characters, numbers and only underscores are accepted.">
-
+				title="Your password must be atleast 6 characters, numbers and only underscores are accepted.">
 		<script>
 			const db = new Localbase("vChatDataBase");
 			const pageCookie = Cookies.get('cookieUsername')
