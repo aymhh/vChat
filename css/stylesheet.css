@@ -262,3 +262,52 @@ html, body {
 	font-size: 70px;
 	color: white;
 }
+
+
+
+.hostIconChat {
+	position: relative;
+	object-fit: cover;
+	z-index: 2;
+}
+
+.hostBGChat {
+	position: absolute;
+	object-fit: cover;
+	z-index: 1;
+	overflow: hidden;
+	filter: blur(2px) brightness(50%);
+}
+
+.host {
+	overflow: hidden;
+	
+}
+
+
+
+.hostStream:hover {
+	filter: brightness(50%);
+	background-image: url("../assets/images/micLogo.png") no-repeat;
+
+}
+
+.guest {
+	overflow: hidden;
+}
+
+.guestIconChat {
+	position: relative;
+	object-fit: cover;
+	z-index: 2;
+}
+
+.guestBGChat {
+	overflow: hidden;
+	position: absolute;
+	object-fit: cover;
+	z-index: 1;
+	filter: blur(2px) brightness(50%);
+}
+
+

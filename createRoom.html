@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>vChat - Official Website</title>
+	<meta name="description" content="SAT Project">
+	<meta property="og:title" content="vChat - Official Website">
+	<meta property="og:site_name" content="vChat">
+	<meta property="og:description" content="SAT Project">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+	<link rel="icon" type="image/png" href="./assets/images/favicon.jpg">
+
+</head>
+
+<body>
+
+
+	<div>
+		<a href="./index.html">
+		  <img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
+		</a>
+	</div>
+  
+
+	<div class="videoElements">
+		<div class="host" id="host">
+
+			<img src="./assets/images/" alt="">
+			<img class="hostBGChat" id="hostBGChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="360" alt="hostBGChat">
+				
+
+				<img class="hostIconChat" id="hostIconChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="hostIconChat">
+			</img>
+
+			
+			<video src="./assets/bob.mp4" class="hostStream"  id="hostStream" autoplay playsinline></video>
+			
+		</div>
+
+		<div class="guest" id="guest">
+
+			<video src="./assets/bob.mp4" class="guestStream" id="guestStream" autoplay playsinline></video>
+
+
+			<img class="guestBGChat" id="guestBGChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="360" alt="cameraIcon">
+				<img class="guestIconChat" id="guestIconChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="cameraIcon">
+			</img>
+
+		</div>
+	</div>
+
+	
+	<script>
+
+		const db = new Localbase("vChatDataBase");
+		const pageCookie = Cookies.get('cookieUsername');
+
+		db.collection('users').doc({ username: pageCookie }).get().then(doc => {
+			document.getElementById("hostIconChat").src = doc[`icon`];
+			document.getElementById("hostBGChat").src = doc[`icon`];
+		})		
+		db.collection('users').doc({ username: "AmeerKat" }).get().then(doc => {
+			document.getElementById("guestIconChat").src = doc[`icon`];
+			document.getElementById("guestBGChat").src = doc[`icon`];
+		})
+
+	</script>
+
+
+
+</body>
+
+</html>
