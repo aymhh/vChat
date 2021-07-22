@@ -86,6 +86,7 @@
 
         e.preventDefault();
 
+        if(username.value.includes())
 
         db.collection('users').doc({ username: username.value }).get().then(document => {
         if(document === undefined) {
@@ -105,7 +106,7 @@
       })
     </script>
     
-    <button type="submit" id=loginButton" class="loginButton" style="margin-top: 8%;" >login!</button>
+    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 8%;" >login!</button>
 
   </form>
 

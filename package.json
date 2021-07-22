@@ -18,7 +18,6 @@
   "homepage": "https://github.com/aymhh/vChat#readme",
   "dependencies": {
     "firebase": "^8.7.1",
-    "fs": "0.0.1-security",
     "localbase": "^0.7.5",
     "node.js": "0.0.1-security"
   }
