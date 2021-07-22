@@ -19,6 +19,7 @@
   "dependencies": {
     "firebase": "^8.7.1",
     "localbase": "^0.7.5",
-    "node.js": "0.0.1-security"
+    "node.js": "0.0.1-security",
+    "webrtc": "^1.14.1"
   }
 }
