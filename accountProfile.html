@@ -110,12 +110,15 @@
 			})
 
 			updateButton.addEventListener('submit', function (e) {
+				
 				e.preventDefault();
 
 				const icon = document.getElementById("pfp");
 				const email = document.getElementById("email");
 				const username = document.getElementById("uid");
 				const password = document.getElementById("pwd");
+				
+
 
 
 				db.collection('users').doc({ username: username.value }).set({
@@ -123,7 +126,7 @@
 				  username: username.value,
 				  password: password.value,
 				  icon: icon.value
-				})
+				});
 
 				alert("Your details have been updated!")
 				return window.location.href = './profilePage.html'
