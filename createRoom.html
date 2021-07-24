@@ -18,42 +18,53 @@
 </head>
 
 <body>
-
-
 	<div>
 		<a href="./index.html">
 		  <img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
 		</a>
 	</div>
-  
 
-	<div class="videoElements">
-		<div class="host" id="host">
-
-			<img src="./assets/images/" alt="">
-			<img class="hostBGChat" id="hostBGChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="360" alt="hostBGChat">
+	<div class="container">
+		<div class="videoElements">
+			<div class="host" id="host">
+				<p class="subtext" id="hostTitle">host: </p>
+				<img src="./assets/images/" alt="">
+				<img class="hostBGChat" id="hostBGChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="360" alt="hostBGChat">
+					
+	
+					<img class="hostIconChat" id="hostIconChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="hostIconChat">
+				</img>
+	
 				
-
-				<img class="hostIconChat" id="hostIconChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="hostIconChat">
-			</img>
-
-			
-			<video src="./assets/bob.mp4" class="hostStream"  id="hostStream" autoplay playsinline></video>
-			
+				<video src="./assets/bob.mp4" class="hostStream"  id="hostStream" autoplay playsinline></video>
+				
+			</div> 
+	
+			<div class="guest" id="guest">
+				<p class="subtext" id="guestTitle">guest: </p>
+				<video src="./assets/bob.mp4" class="guestStream" id="guestStream" autoplay playsinline></video>
+				<img class="guestBGChat" id="guestBGChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="360" alt="cameraIcon">
+					<img class="guestIconChat" id="guestIconChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="cameraIcon">
+				</img>
+	
+			</div>
 		</div>
-
-		<div class="guest" id="guest">
-
-			<video src="./assets/bob.mp4" class="guestStream" id="guestStream" autoplay playsinline></video>
-
-
-			<img class="guestBGChat" id="guestBGChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="360" alt="cameraIcon">
-				<img class="guestIconChat" id="guestIconChat" src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="cameraIcon">
-			</img>
-
-		</div>
-		
 	</div>
+
+
+
+	<div class="utilities">
+		<button class="muteFunction" id="muteFunction" title="you are currenly unmuted! click here if you want to be muted!">
+			<img class="micImage" id="micImage" src="./assets/images/micOpenLogo.png"  alt="micIcon" height="100" width="100">
+		</button>
+
+		<button class="chatFunction" id="chatFunction" title="click here to open the chatbox for this room!">
+			<img class="chatImage" id="chatImage" src="./assets/images/chatReg.png" alt="chatIcon" height="100" width="100">
+		</button>
+
+		<button class="camFunction" id="camFunction" title="your camera is currenly on! click here if you want to turn it off!">
+			<img class="camImage" id="camImage" src="./assets/images/cameraOnLogo.png" alt="camIcon" height="100" width="100">
+		</button>
 
 	<script>
 
@@ -63,11 +74,47 @@
 		db.collection('users').doc({ username: pageCookie }).get().then(doc => {
 			document.getElementById("hostIconChat").src = doc[`icon`];
 			document.getElementById("hostBGChat").src = doc[`icon`];
+			document.getElementById("hostTitle").innerText = `host: ${doc[`username`]}`
 		})		
-		db.collection('users').doc({ username: "AmeerKat" }).get().then(doc => {
+		db.collection('users').doc({ username: pageCookie }).get().then(doc => {
 			document.getElementById("guestIconChat").src = doc[`icon`];
 			document.getElementById("guestBGChat").src = doc[`icon`];
+			document.getElementById("guestTitle").innerText = `guest: ${doc[`username`]}`
 		})
+
+		// mic button
+		const muteButton = document.getElementById("muteFunction")
+		
+		muteButton.addEventListener("click", function (e) {
+			const micOpen = "micOpenLogo.png"
+			const micClose = "micClosedLogo.png"
+			let micImageSrc = document.getElementById("micImage").src
+			if(micImageSrc.endsWith(micOpen)){
+				document.getElementById("muteFunction").title = "you are currenly muted! click here if you want to be unmuted!"
+				return document.getElementById("micImage").src = `./assets/images/${micClose}`
+			} else if (micImageSrc.endsWith(micClose)) {
+				document.getElementById("muteFunction").title = "you are currenly unmuted! click here if you want to be muted!"
+				return document.getElementById("micImage").src = `./assets/images/${micOpen}`
+			}
+		});
+		
+
+		// camera button
+		const cameraButton = document.getElementById("camFunction")
+
+		cameraButton.addEventListener("click", function (e) {
+			const camOpen = "cameraOnLogo.png"
+			const camClose = "cameraOffLogo.png"
+			let camImageSrc = document.getElementById("camImage").src
+			
+			if(camImageSrc.endsWith(camOpen)){
+				cameraButton.title = "your camera is currenly off! click here if you want to turn it on!"
+				return document.getElementById("camImage").src = `./assets/images/${camClose}`
+			} else if (camImageSrc.endsWith(camClose)) {
+				cameraButton.title = "your camera is currenly on! click here if you want to turn it off!"
+				return document.getElementById("camImage").src = `./assets/images/${camOpen}`
+			}
+		});
 
 	</script>
 
