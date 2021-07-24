@@ -1,3 +1,0 @@
-const string = "nigger, nigga, n!gger, n!gga, coon, c00n, negro, fag, faggot, niggers, niggas, n1gger, n1gga, n1gg3r, n1ger, nigga, nigger, faggots, fags, nagger, nogger, nugger, n egger, niggar, cunt, feggot, feg, naggar, co0n, c0on, cunts, clut, kunt, kunts, nigges, kys, cunt., dick, sex, s3x, 5ex, 53x, whore, c0ck, slut, nigg, retard, blowjob, buttplug, clitoris, f4g, c00, co0, negg"
-const racialArray = string.split(',')
-export {racialArray}
