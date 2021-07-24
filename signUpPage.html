@@ -79,14 +79,30 @@
       const username = document.getElementById("uid");
       const password = document.getElementById("pwd");
       const db = new Localbase("vChatDataBase")
-      db.config.debug = false
 
        
       loginButton.addEventListener('submit', function (e) {
 
+        const restrictedString = `
+        ,nigger,naggar,nagga,nogger,nigg3r,nigg4,nigga,n!gger,n!gga,coon,c00n,negro,fag,faggot,niggers,niggas,n1gger,n1gga,n1gg3r,n1ger,nigga,nigger,faggots,fags,nagger,nogger,negger,niggar,cunt,feggot,feg,naggar,co0n,c0on,cunts,clut,kunt,kunts,nigges,kys,cunt.,dick,sex,s3x,5ex,53x,whore,c0ck,slut,nigg,retard,blowjob,buttplug,clitoris,f4g,c00,co0,negg`
+        const restrictedArray = restrictedString.split(",")
+
+        
         e.preventDefault();
 
-        if(username.value.includes())
+        for(x = 0; x < restrictedArray.length; x++) {
+          if(username.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible usernames please.")
+          if(email.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible email please.")
+          if(password.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible password please.")
+        }
+        
+				const filterString = "!,@,#,$,%,^,&,*,(,),?,',;,[,],{,}=,+,-"
+				const filterArray = filterString.split(",")
+
+				if(username.value.length >= 13) return alert("Your username is too long!\nMust be between 6-12 characters.")
+				for (let i = 0; i < filterArray.length; i++) {
+					if(password.value.includes(filterArray)) return alert("nono in password :)")
+				}
 
         db.collection('users').doc({ username: username.value }).get().then(document => {
         if(document === undefined) {
@@ -96,11 +112,10 @@
              password: password.value,
              icon: "https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
            }, username.value)
-
             Cookies.set('cookieUsername', username.value)
             return window.location.href = './profilePage.html'
           } else {
-            alert("An account with this username already exists. Please pick a different username.")
+            return alert("An account with this username already exists. Please pick a different username.")
           }
         })
       })
