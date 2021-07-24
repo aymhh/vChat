@@ -22,8 +22,9 @@
 
 	<div class="logo2">
 		<a href="./index.html">
-			<img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%"
-				alt="vChatLogo">
+			<img 	src="./assets/images/vchatLogo.png" 
+					style="position:absolute; top: 5%; left: 3%;" width="10.3%"
+					alt="vChatLogo">
 		</a>
 	</div>
 
@@ -94,7 +95,8 @@
 				required
 				minlength="6" 
 				value="user password goes here"
-				title="Your password must be atleast 6 characters, numbers and only underscores are accepted.">
+				title="Your password must be atleast 6 characters, numbers and only underscores are accepted."
+				>
 		<script>
 			const db = new Localbase("vChatDataBase");
 			const pageCookie = Cookies.get('cookieUsername')
@@ -118,16 +120,14 @@
 				const username = document.getElementById("uid");
 				const password = document.getElementById("pwd");
 				
-
-
-
+				
 				db.collection('users').doc({ username: username.value }).set({
 				  email: email.value, 
 				  username: username.value,
 				  password: password.value,
 				  icon: icon.value
 				});
-
+				
 				alert("Your details have been updated!")
 				return window.location.href = './profilePage.html'
 			})
