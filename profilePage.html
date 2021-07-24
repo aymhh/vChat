@@ -64,7 +64,7 @@
  
 			<a href="./accountProfile.html">
 				<div class="profileItem">
-					<img class="userIcon" id="userIcon" src="boiler" width="150" height="150" alt="cameraIcon">
+					<img class="userIcon" id="userIcon" src="https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="cameraIcon">
 					<p class="profileHeading" style="font-size: 35px;"><b>account</b></p>
 					<p class="profileSubtitle" style="font-size: 20px;"><b>information</b></p>
 				</div>
@@ -72,10 +72,17 @@
 
 			<script>
 
-				const db = new Localbase("vChatDataBase");
 
+				const db = new Localbase("vChatDataBase");
+				const icon = document.getElementById("userIcon")
 				db.collection('users').doc({ username: pageCookie }).get().then(doc => {
-					document.getElementById("userIcon").src = doc[`icon`];
+					icon.src = doc[`icon`];
+				})
+
+				console.log(document.getElementById("userIcon"))
+				icon.addEventListener("error", () => {
+					alert(`X_X\nunable to load your profile picture, this is because of a bad link you provided. makes sure the link is valid and it ends in\n1. png\n2. jpg\n3. jpeg\n4. gif`)
+					return window.location.href = './accountProfile.html'
 				})
 
 			</script>
