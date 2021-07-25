@@ -207,6 +207,18 @@ html, body {
 	position: relative;
 }
 
+.joinButton {
+	background-color: #6e84c8; 
+	color: white;
+	border: none;
+	width: 100%;
+	height: 10%;
+	font-size: 25px;
+	font-family: ArkiReg;
+	position: relative;
+
+}
+
 .saveButton {
 	background-color: #6e84c8; 
 	color: white;
@@ -227,6 +239,26 @@ html, body {
 	font-family: ArkiReg;
 	color: white;
 	margin-bottom: -35px;
+	background-color: Transparent;
+	border: none;
+	font-size: 25px;
+
+}
+
+.mediaAccessButtons {
+	background-color:firebrick; 
+	color: white;
+	border: none;
+	margin-top: 50px;
+	width: 90%;
+	height: 10%;
+	font-size: 20px;
+	top: 5%;
+	left: 5%;
+	font-family: ArkiReg;
+	margin: 0;
+	position: relative;
+  
 }
 
 .profileItem:hover {
@@ -288,13 +320,6 @@ html, body {
 	overflow: hidden;
 }
 
-
-
-.hostStream:hover {
-	filter: brightness(50%);
-
-}
-
 .guest {
 	overflow: hidden;
 }
@@ -352,4 +377,142 @@ html, body {
 
 .camImage:hover {
 	filter:brightness(70%)
+}
+
+.roomMakerContainer {
+	height: 70%;
+	width: 30%;
+	background-color: white;  
+	position: relative;
+}
+
+.createRoomButton {
+	position: inherit;
+	color: white;
+	width: 100%;
+	height: 10%;
+	font-size: 25px;
+	font-family: ArkiReg;
+	position: relative;
+	margin-top: 10%;
+}
+
+.webcamButton {
+	background-color: #6e84c8; 
+	color: white;
+	border: none;
+	width: 50%;
+	height: 10%;
+	top: 50px;
+	left: 25%;
+	font-size: 20px;
+	font-family: ArkiReg;
+	position: relative;
+}
+
+.roomMakerBar {
+	position: relative;
+	border: none;
+	width: 78%;
+	height: 11%;
+	background-color: #374369;
+	margin-left: 11%;
+	font-size: 22.5px;
+	font-family: ArkiBold;
+	color: white;
+	text-indent: 5%;
+
+}
+
+.roomMakerBar:hover {
+	filter: brightness(70%);
+}
+
+.createRoomButton:hover {
+	filter: brightness(70%);
+}
+
+
+.callConstructorContainer {
+	position:absolute;
+}
+
+.constructorElements {
+	margin-top: 70vw;
+	width:1080px;
+	text-align: center;
+	height:300px;
+	background-color:transparent;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+#st-box {
+	display: inline-block;
+	height: 100%;
+	width:30%;
+	padding: 10px;
+	background-color:white;
+}
+
+#nd-box {
+	display: inline-block;
+	width:30%;
+	height: 100%;
+	padding: 10px;
+	background-color:white;
+}
+
+#rd-box {
+	display: inline-block;
+	height: 100%;
+	width:30%;
+	padding: 10px;
+	background-color: white;
+}
+
+.startupBoxes {
+	width: 96%;
+	height: 20%;
+	margin-left: 2%;
+	background-color: #6e84c8;
+	font-family: ArkiReg;
+	color: white;
+	font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.startupBoxesButton {
+	background-color: #354163; 
+	text-indent: 5%;
+	color: white;
+	width: 70%;
+	height: 20%;
+	font-size: 20px;
+	font-family: ArkiThin;
+	font-weight: bold;
+	position: relative;
+}
+
+.bufferBoxes {
+	background-color: white; 
+	text-indent: 5%;
+	color: white;
+	border: none;
+	width: 70%;
+	height: 20%;
+	font-size: 20px;
+	font-family: ArkiThin;
+	font-weight: bold;
+	position: relative;
+}
+
+.hostStream {
+	object-fit: cover;
+}
+
+.guestStream {
+	object-fit: cover;
 }

@@ -46,19 +46,13 @@
 
 		<div class="profileContainer">
 
-			<button class="profileItem" id="createRoom">
-				<img src="assets/images/plusIcon.png" width="150" height="150" alt="plugIcon">
-				<p class="profileHeading" style="font-size: 35px;"><b>create</b></p>
-				<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
-			</button>
-
-			<button class="profileItem" id="createRoom">
+			<button class="profileItem" id="rooms">
 				<img src="assets/images/joinIcon.png" width="150" height="150" alt="plugIcon">
-				<p class="profileHeading" style="font-size: 35px;"><b>join</b></p>
-				<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
+				<p class="profileHeading" style="font-size: 35px;"><b>rooms</b></p>
+				<p class="profileSubtitle" style="font-size: 20px;"><b>hub</b></p>
 			</button>
 
-			<button class="profileItem" id="createRoom">
+			<button class="profileItem">
 				<img class="userIcon" id="userIcon" src="https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="plugIcon">
 				<p class="profileHeading" style="font-size: 35px;"><b>account</b></p>
 				<p class="profileSubtitle" style="font-size: 20px;"><b>information</b></p>
@@ -84,6 +78,10 @@
 					return window.location.href = './accountProfile.html'
 				})
 
+				const rooomsButton = document.getElementById("rooms")
+				rooomsButton.addEventListener("click", function (e) {
+					return window.location.href = './rooms.html'
+				})
 			</script>
 
 			<script type="module" src="/main.js"></script>
