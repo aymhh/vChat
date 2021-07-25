@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>vChat - Login Page</title>
+    <meta name="description" content="SAT Project">
+    <meta property="og:title" content="vChat - Official Website">
+    <meta property="og:site_name" content="vChat">
+    <meta property="og:description" content="SAT Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+	  <link rel="icon" type="image/png" href="./assets/images/favicon.jpg">
+
+  </head>
+
+    <body>
+
+        <div class="logo2">
+          <a href="./index.html">
+            <img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
+          </a>
+        </div>
+
+
+        <form id="form" class="loginContainer" method="GET" action="./profilePage.html">
+
+            <div class="headerBarLogin">
+                <b>join room</b>
+            </div>
+
+            <div class="loginBarFonts" style="top: 13%;">
+                <i><abbr title="you should of been given this by the chatroom host!">chatroom ID</abbr></i>
+            </div>
+
+            <!--Begining on the Username Input Field-->
+            <input
+                    class="loginBar" 
+                    type="text" 
+                    id="chatID" 
+                    placeholder=". . ." 
+                    required 
+                    style="margin-top: 16%;"
+            >
+
+            <button class="mediaAccessButtons" id="" >get webcam and microphone</button>
+
+            <!--This is the button element-->
+            <button type="submit" id="joinButton" class="joinButton" style="margin-top: 50px;">join!</button>
+            
+        </form>
+
+        <script>
+            const submitButton = document.getElementById("form");
+            const chatID = document.getElementById('chatID');
+
+            submitButton.addEventListener('submit', function (e) {
+
+                e.preventDefault();
+
+
+
+
+            })
+    </script>
+          
+  </body>
+
+</html>

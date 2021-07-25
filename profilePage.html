@@ -43,49 +43,50 @@
 			<b>LET'S GET STARTED!</b>
 		</div>
 
+
 		<div class="profileContainer">
 
-			<a href="./soonTM.html">
-				<div class="profileItem">
-					<img src="assets/images/plusIcon.png" width="150" height="150" alt="plugIcon">
-					<p class="profileHeading" style="font-size: 35px;"><b>create</b></p>
-					<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
-				</div>
-			</a>
+			<button class="profileItem" id="createRoom">
+				<img src="assets/images/plusIcon.png" width="150" height="150" alt="plugIcon">
+				<p class="profileHeading" style="font-size: 35px;"><b>create</b></p>
+				<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
+			</button>
 
-			<a href="./soonTM.html">
-				<div class="profileItem">
-					<img src="assets/images/joinIcon.png" width="150" height="150" alt="joinIcon">
-					<p class="profileHeading" style="font-size: 35px;"><b>join</b></p>
-					<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
-				</div>
-			</a>
+			<button class="profileItem" id="createRoom">
+				<img src="assets/images/joinIcon.png" width="150" height="150" alt="plugIcon">
+				<p class="profileHeading" style="font-size: 35px;"><b>join</b></p>
+				<p class="profileSubtitle" style="font-size: 20px;"><b>a room</b></p>
+			</button>
 
- 
-			<a href="./accountProfile.html">
-				<div class="profileItem">
-					<img class="userIcon" id="userIcon" src="https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="cameraIcon">
-					<p class="profileHeading" style="font-size: 35px;"><b>account</b></p>
-					<p class="profileSubtitle" style="font-size: 20px;"><b>information</b></p>
-				</div>
-			</a>
+			<button class="profileItem" id="createRoom">
+				<img class="userIcon" id="userIcon" src="https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png" width="150" height="150" alt="plugIcon">
+				<p class="profileHeading" style="font-size: 35px;"><b>account</b></p>
+				<p class="profileSubtitle" style="font-size: 20px;"><b>information</b></p>
+			</button>
 
-			<script>
+ 			<script>
 
 
 				const db = new Localbase("vChatDataBase");
 				const icon = document.getElementById("userIcon")
+
 				db.collection('users').doc({ username: pageCookie }).get().then(doc => {
 					icon.src = doc[`icon`];
 				})
 
-				console.log(document.getElementById("userIcon"))
 				icon.addEventListener("error", () => {
 					alert(`X_X\nunable to load your profile picture, this is because of a bad link you provided. makes sure the link is valid and it ends in\n1. png\n2. jpg\n3. jpeg\n4. gif`)
 					return window.location.href = './accountProfile.html'
 				})
 
+				const profileButton = document.getElementById("userIcon")
+				profileButton.addEventListener("click", function (e) {
+					return window.location.href = './accountProfile.html'
+				})
+
 			</script>
+
+			<script type="module" src="/main.js"></script>
 
 		</div>
 	</div>
