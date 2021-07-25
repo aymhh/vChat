@@ -33,6 +33,7 @@ let localStream = null;
 let remoteStream = null;
 
 // HTML elements
+
 const webcamButton = document.getElementById('webcamButton');
 const webcamVideo = document.getElementById('hostStream');
 const callButton = document.getElementById('callButton');
