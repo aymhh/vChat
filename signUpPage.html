@@ -3,8 +3,8 @@
 <html>
 
 <head>
-  
-  <title>vChat - Login Page</title>
+
+  <title>vChat - Sign Up</title>
   <meta name="description" content="SAT Project">
   <meta property="og:title" content="vChat - Official Website">
   <meta property="og:site_name" content="vChat">
@@ -13,12 +13,11 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="./stylesheet.css">
   <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js" 
-          integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
-          crossorigin="anonymous">
-  </script>
-	<link rel="icon" type="image/png" href="./assets/images/favicon.jpg">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous">
+    </script>
+  <link rel="icon" type="image/png" href="./assets/images/favicon.jpg">
 
 </head>
 
@@ -45,34 +44,23 @@
     </div>
 
     <input class="loginBar" id="email" type="email" placeholder=". . ." required style="margin-top: 7%;">
-    
+
 
     <div class="loginBarFonts" style="top: 4%;">
       <i><abbr
           title="Your username must be between 4-16 characters, numbers and special characters (! @ # ?) are accepted.">username</abbr></i>
     </div>
 
-    <input  class="loginBar" 
-            id="uid" 
-            placeholder=". . ." 
-            minlength="4" 
-            required 
-            style="margin-top: 6%;">
-    
+    <input class="loginBar" id="uid" placeholder=". . ." minlength="4" required style="margin-top: 6%;">
+
 
     <div class="loginBarFonts" style="top: 4%;">
       <i><abbr
           title="Your password must be between 6-16 characters, numbers and special characters (! @ # ?) are accepted.">password</abbr></i>
     </div>
 
-    <input  class="loginBar" 
-            id="pwd" 
-            autocomplete="on" 
-            type="password" 
-            minlength="6" 
-            placeholder=". . ." 
-            required
-            style="margin-top: 6%;">
+    <input class="loginBar" id="pwd" autocomplete="on" type="password" minlength="6" placeholder=". . ." required
+      style="margin-top: 6%;">
 
     <script>
       const loginButton = document.getElementById("signUpForm");
@@ -81,38 +69,38 @@
       const password = document.getElementById("pwd");
       const db = new Localbase("vChatDataBase")
 
-       
+
       loginButton.addEventListener('submit', function (e) {
 
         const restrictedString = `
         ,nigger,naggar,nagga,nogger,nigg3r,nigg4,nigga,n!gger,n!gga,coon,c00n,negro,fag,faggot,niggers,niggas,n1gger,n1gga,n1gg3r,n1ger,nigga,nigger,faggots,fags,nagger,nogger,negger,niggar,cunt,feggot,feg,naggar,co0n,c0on,cunts,clut,kunt,kunts,nigges,kys,cunt.,dick,sex,s3x,5ex,53x,whore,c0ck,slut,nigg,retard,blowjob,buttplug,clitoris,f4g,c00,co0,negg`
         const restrictedArray = restrictedString.split(",")
 
-        
+
         e.preventDefault();
 
-        for(x = 0; x < restrictedArray.length; x++) {
-          if(username.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible usernames please.")
-          if(email.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible email please.")
-          if(password.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible password please.")
+        for (x = 0; x < restrictedArray.length; x++) {
+          if (username.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible usernames please.")
+          if (email.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible email please.")
+          if (password.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible password please.")
         }
-        
-				const filterString = "!,@,#,$,%,^,&,*,(,),?,',;,[,],{,}=,+,-"
-				const filterArray = filterString.split(",")
 
-				if(username.value.length >= 13) return alert("Your username is too long!\nMust be between 6-12 characters.")
-				for (let i = 0; i < filterArray.length; i++) {
-					if(password.value.includes(filterArray)) return alert("nono in password :)")
-				}
+        const filterString = "!,@,#,$,%,^,&,*,(,),?,',;,[,],{,}=,+,-"
+        const filterArray = filterString.split(",")
+
+        if (username.value.length >= 13) return alert("Your username is too long!\nMust be between 6-12 characters.")
+        for (let i = 0; i < filterArray.length; i++) {
+          if (password.value.includes(filterArray)) return alert("nono in password :)")
+        }
 
         db.collection('users').doc({ username: username.value }).get().then(document => {
-        if(document === undefined) {
-          db.collection('users').add({
-             email: email.value,
-             username: username.value,
-             password: password.value,
-             icon: "https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
-           }, username.value)
+          if (document === undefined) {
+            db.collection('users').add({
+              email: email.value,
+              username: username.value,
+              password: password.value,
+              icon: "https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
+            }, username.value)
             Cookies.set('cookieUsername', username.value)
             return window.location.href = './profilePage.html'
           } else {
@@ -121,8 +109,8 @@
         })
       })
     </script>
-    
-    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 8%;" >login!</button>
+
+    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 8%;">login!</button>
 
   </form>
 

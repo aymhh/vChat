@@ -4,19 +4,22 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB4HDuJzJKITVFjApCQcCQy11_QSRE3X7k",
-    authDomain: "vchat-90d66.firebaseapp.com",
-    projectId: "vchat-90d66",
-    storageBucket: "vchat-90d66.appspot.com",
-    messagingSenderId: "462641439592",
-    appId: "1:462641439592:web:d7c71e3dca80b20e3becdd",
-    measurementId: "G-BL2RDETRWQ"
-  };
+  apiKey: "AIzaSyB4HDuJzJKITVFjApCQcCQy11_QSRE3X7k",
+  authDomain: "vchat-90d66.firebaseapp.com",
+  projectId: "vchat-90d66",
+  storageBucket: "vchat-90d66.appspot.com",
+  messagingSenderId: "462641439592",
+  appId: "1:462641439592:web:d7c71e3dca80b20e3becdd",
+  measurementId: "G-BL2RDETRWQ"
+};
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 const firestore = firebase.firestore();
+const db = new Localbase("vChatDataBase");
+const cookieUsername = Cookies.get('cookieUsername');
+const cookieIcon = Cookies.get('cookieIcon');
 
 const servers = {
   iceServers: [
@@ -41,16 +44,15 @@ const callInput = document.getElementById('callInput');
 const joinCallInput = document.getElementById("joinCallInput");
 const answerButton = document.getElementById('joinFunction');
 const remoteVideo = document.getElementById('guestStream');
-const hangupButton = document.getElementById('hangupButton');
+
+// localdb 
 
 
-// 1. Setup media sources
-
+ // 1. Setup media sources
 webcamButton.onclick = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-
   remoteStream = new MediaStream();
-
+  
   // Push tracks from local stream to peer connection
   localStream.getTracks().forEach((track) => {
     pc.addTrack(track, localStream);
@@ -85,16 +87,21 @@ callButton.onclick = async () => {
     event.candidate && offerCandidates.add(event.candidate.toJSON());
   };
 
-  // Create offer
+  
+
+  // Create the actual offer
   const offerDescription = await pc.createOffer();
   await pc.setLocalDescription(offerDescription);
 
   const offer = {
     sdp: offerDescription.sdp,
     type: offerDescription.type,
+    hostname: cookieUsername,
+    hostpfp: cookieIcon
   };
 
   await callDoc.set({ offer });
+
 
   // Listen for remote answer
   callDoc.onSnapshot((snapshot) => {
@@ -110,12 +117,11 @@ callButton.onclick = async () => {
     snapshot.docChanges().forEach((change) => {
       if (change.type === 'added') {
         const candidate = new RTCIceCandidate(change.doc.data());
+        console.log(change.doc.data())
         pc.addIceCandidate(candidate);
-      }
+      };
     });
   });
-
-  hangupButton.disabled = false;
 };
 
 // 3. Answer the call with the unique ID
@@ -131,6 +137,7 @@ answerButton.onclick = async () => {
 
   const callData = (await callDoc.get()).data();
 
+  const guestIcon = callData.offer.hostpfp
   const offerDescription = callData.offer;
   await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
 
@@ -140,9 +147,19 @@ answerButton.onclick = async () => {
   const answer = {
     type: answerDescription.type,
     sdp: answerDescription.sdp,
+    guestname: cookieUsername,
+    guestpfp: cookieIcon
   };
 
   await callDoc.update({ answer });
+  const updatedCallData = (await callDoc.get()).data();
+  console.log(updatedCallData.offer.hostpfp)
+
+  const guestIconChat = document.getElementById("guestIconChat")
+  guestIconChat.src = updatedCallData.offer.hostpfp
+  const guestBGChat = document.getElementById("guestBGChat")
+  guestBGChat.src = updatedCallData.offer.hostpfp
+
 
   offerCandidates.onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
@@ -154,3 +171,55 @@ answerButton.onclick = async () => {
     });
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+db.collection('users').doc({ username: cookieUsername }).get().then(doc => {
+  document.getElementById("hostIconChat").src = doc[`icon`];
+  document.getElementById("hostBGChat").src = doc[`icon`];
+})
+
+// mic button
+const muteButton = document.getElementById("muteFunction")
+muteButton.addEventListener("click", function (e) {
+  const micOpen = "micOpenLogo.png"
+  const micClose = "micClosedLogo.png"
+  let micImageSrc = document.getElementById("micImage").src
+  if (micImageSrc.endsWith(micOpen)) {
+    document.getElementById("muteFunction").title = "you are currenly muted! click here if you want to be unmuted!"
+    return document.getElementById("micImage").src = `./assets/images/${micClose}`
+  } else if (micImageSrc.endsWith(micClose)) {
+    document.getElementById("muteFunction").title = "you are currenly unmuted! click here if you want to be muted!"
+    return document.getElementById("micImage").src = `./assets/images/${micOpen}`
+  }
+}); 
+
+
+// camera button
+const cameraButton = document.getElementById("camFunction")
+cameraButton.addEventListener("click", function (e) {
+  const camOpen = "cameraOnLogo.png"
+  const camClose = "cameraOffLogo.png"
+  let camImageSrc = document.getElementById("camImage").src
+
+  if (camImageSrc.endsWith(camOpen)) {
+    cameraButton.title = "your camera is currenly off! click here if you want to turn it on!"
+    return document.getElementById("camImage").src = `./assets/images/${camClose}`
+  } else if (camImageSrc.endsWith(camClose)) {
+    cameraButton.title = "your camera is currenly on! click here if you want to turn it off!"
+    return document.getElementById("camImage").src = `./assets/images/${camOpen}`
+  }
+});

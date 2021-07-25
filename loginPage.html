@@ -2,99 +2,88 @@
 
 <html>
 
-  <head>
-    <title>vChat - Login Page</title>
-    <meta name="description" content="SAT Project">
-    <meta property="og:title" content="vChat - Official Website">
-    <meta property="og:site_name" content="vChat">
-    <meta property="og:description" content="SAT Project">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="./stylesheet.css">
-    <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
-	  <link rel="icon" type="image/png" href="./assets/images/favicon.jpg">
+<head>
+  <title>vChat - Login</title>
+  <meta name="description" content="SAT Project">
+  <meta property="og:title" content="vChat - Official Website">
+  <meta property="og:site_name" content="vChat">
+  <meta property="og:description" content="SAT Project">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./stylesheet.css">
+  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+  <link rel="icon" type="image/png" href="./assets/images/favicon.jpg">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <div class="logo2">
-      <a href="./index.html">
-        <img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
-      </a>
+  <div class="logo2">
+    <a href="./index.html">
+      <img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%"
+        alt="vChatLogo">
+    </a>
+  </div>
+
+
+  <form id="form" class="loginContainer" method="GET" action="./profilePage.html">
+
+    <div class="headerBarLogin">
+      <b>login</b>
     </div>
 
+    <div class="loginBarFonts" style="top: 13%;">
+      <i>username</i>
+    </div>
 
-    <form id="form" class="loginContainer" method="GET" action="./profilePage.html">
+    <!--Begining on the Username Input Field-->
+    <input class="loginBar" type="text" id="uid" placeholder=". . ." required style="margin-top: 16%;">
 
-      <div class="headerBarLogin">
-        <b>login</b>
-      </div>
-
-      <div class="loginBarFonts" style="top: 13%;">
-        <i>username</i>
-      </div>
-
-      <!--Begining on the Username Input Field-->
-      <input  class="loginBar" 
-              type="text" 
-              id="uid" 
-              placeholder=". . ." 
-              required 
-              style="margin-top: 16%;">
-
-      <!--Begining on the Password Input Field-->
-      <div class="loginBarFonts" style="top: 4%;">
-        <i>password</i>
-      </div>
-      <input  class="loginBar" 
-              type="password" 
-              autocomplete="on" 
-              placeholder=". . ." 
-              id="pwd" 
-              name="password" 
-              required 
-              style="margin-top: 5%;">
+    <!--Begining on the Password Input Field-->
+    <div class="loginBarFonts" style="top: 4%;">
+      <i>password</i>
+    </div>
+    <input class="loginBar" type="password" autocomplete="on" placeholder=". . ." id="pwd" name="password" required
+      style="margin-top: 5%;">
 
 
-      <script>
-          
-          const submitButton = document.getElementById("form");
-          const username = document.getElementById('uid');
-          const password = document.getElementById('pwd');
+    <script>
 
-        submitButton.addEventListener('submit', function (e) {
+      const submitButton = document.getElementById("form");
+      const username = document.getElementById('uid');
+      const password = document.getElementById('pwd');
 
-          e.preventDefault();
+      submitButton.addEventListener('submit', function (e) {
 
-    
-          const db = new Localbase("vChatDataBase");
-    
-          console.log(`Inputed field uid: ${username.value}`)
-          console.log(`Inputed field pwd: ${password.value}`)
-    
-          db.config.debug = false
-          
-          
-          db.collection('users').doc({ username: username.value }).get().then(document => {
-            if(document === undefined) {
-              alert("No user exists with this username!")
+        e.preventDefault();
+
+
+        const db = new Localbase("vChatDataBase");
+
+        console.log(`Inputed field uid: ${username.value}`)
+        console.log(`Inputed field pwd: ${password.value}`)
+
+        db.config.debug = false
+
+
+        db.collection('users').doc({ username: username.value }).get().then(document => {
+          if (document === undefined) {
+            alert("No user exists with this username!")
+          } else {
+            if (document['password'] !== password.value) {
+              alert("Incorrect password!")
             } else {
-                if(document['password'] !== password.value ) {
-                  alert("Incorrect password!")
-                } else {
-                  Cookies.set("cookieUsername", document['username'])
-                  return window.location.href = './profilePage.html'
-                }
-              }
-            })
-          })
+              return window.location.href = './profilePage.html'
+            };
+          };
+        });
+      });
     </script>
-          
-      <!--This is the button element-->
-      <button type="submit" id="loginButton" class="loginButton" style="margin-top: 50px;">login!</button>
-    </form>
-  </body>
+
+    <!--This is the button element-->
+    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 50px;">login!</button>
+  </form>
+</body>
 
 </html>
