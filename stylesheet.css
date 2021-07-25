@@ -1,21 +1,21 @@
 @font-face {
-	src: url(../assets/fonts/ArkibalDisplayBold.ttf);
+	src: url(./assets/fonts/ArkibalDisplayBold.ttf);
 	font-family: ArkiBold;
 }
 
 @font-face {
-	src: url(../assets/fonts/ArkibalDisplayRegular.ttf);
+	src: url(./assets/fonts/ArkibalDisplayRegular.ttf);
 	font-family: ArkiReg;
 }
 
 @font-face {
-	src: url(../assets/fonts/ArkibalDisplayThin.ttf);
+	src: url(./assets/fonts/ArkibalDisplayThin.ttf);
 	font-family: ArkiThin;
 }
 
 
 html, body {
-	background-image: url(../assets/images/backDrop.png);
+	background-image: url(./assets/images/backDrop.png);
 	background-color: #2c2f33;
 	font-family: "ArkiReg";
 	margin: 0;
