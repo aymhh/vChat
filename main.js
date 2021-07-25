@@ -155,11 +155,17 @@ answerButton.onclick = async () => {
   const updatedCallData = (await callDoc.get()).data();
   console.log(updatedCallData.offer.hostpfp)
 
+  // updating guest with host
   const guestIconChat = document.getElementById("guestIconChat")
   guestIconChat.src = updatedCallData.offer.hostpfp
   const guestBGChat = document.getElementById("guestBGChat")
   guestBGChat.src = updatedCallData.offer.hostpfp
 
+  // updating host with guest
+  const hostIconChat = document.getElementById("hostIconChat")
+  hostIconChat.src = updatedCallData.request.guestpfp
+  const hostBGChat = document.getElementById("hostBGChat")
+  hostBGChat.src = updatedCallData.request.guestpfp
 
   offerCandidates.onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
