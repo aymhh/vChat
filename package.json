@@ -2,15 +2,16 @@
   "name": "vchat",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "dev": "node server",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "vite build --outDir dist/server --ssr src/entry-server.js "
   },
   "devDependencies": {
     "vite": "^2.4.3"
   },
   "dependencies": {
     "firebase": "^8.8.0",
+    "firebase-tools": "^9.16.0",
     "surge": "^0.23.0",
     "webrtc": "^1.14.1"
   }
