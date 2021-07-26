@@ -1,0 +1,16 @@
+{
+  "name": "vchat",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.4.3"
+  },
+  "dependencies": {
+    "firebase": "^8.8.0",
+    "webrtc": "^1.14.1"
+  }
+}
