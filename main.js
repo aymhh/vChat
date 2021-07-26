@@ -152,20 +152,18 @@ answerButton.onclick = async () => {
   };
 
   await callDoc.update({ answer });
-  const updatedCallData = (await callDoc.get()).data();
-  console.log(updatedCallData.offer.hostpfp)
 
   // updating guest with host
   const guestIconChat = document.getElementById("guestIconChat")
-  guestIconChat.src = updatedCallData.offer.hostpfp
+  guestIconChat.src = callData.offer.hostpfp
   const guestBGChat = document.getElementById("guestBGChat")
-  guestBGChat.src = updatedCallData.offer.hostpfp
+  guestBGChat.src = callData.offer.hostpfp
 
   // updating host with guest
   const hostIconChat = document.getElementById("hostIconChat")
-  hostIconChat.src = updatedCallData.request.guestpfp
+  hostIconChat.src = callData.request.guestpfp
   const hostBGChat = document.getElementById("hostBGChat")
-  hostBGChat.src = updatedCallData.request.guestpfp
+  hostBGChat.src = callData.request.guestpfp
 
   offerCandidates.onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
