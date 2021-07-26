@@ -36,7 +36,6 @@ let localStream = null;
 let remoteStream = null;
 
 // HTML elements
-
 const webcamButton = document.getElementById('webcamButton');
 const webcamVideo = document.getElementById('hostStream');
 const callButton = document.getElementById('callButton');
@@ -45,10 +44,9 @@ const joinCallInput = document.getElementById("joinCallInput");
 const answerButton = document.getElementById('joinFunction');
 const remoteVideo = document.getElementById('guestStream');
 
-// localdb 
 
 
- // 1. Setup media sources
+// 1. Setup media sources
 webcamButton.onclick = async () => {
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   remoteStream = new MediaStream();
@@ -137,7 +135,6 @@ answerButton.onclick = async () => {
 
   const callData = (await callDoc.get()).data();
 
-  const guestIcon = callData.offer.hostpfp
   const offerDescription = callData.offer;
   await pc.setRemoteDescription(new RTCSessionDescription(offerDescription));
 
@@ -171,24 +168,10 @@ answerButton.onclick = async () => {
       if (change.type === 'added') {
         let data = change.doc.data();
         pc.addIceCandidate(new RTCIceCandidate(data));
-      }
+      };
     });
   });
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 db.collection('users').doc({ username: cookieUsername }).get().then(doc => {
