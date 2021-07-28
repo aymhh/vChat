@@ -12,70 +12,73 @@
 	<meta property="og:description" content="SAT Project">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="./stylesheet.css">
+	<link rel="stylesheet" href="/stylesheet.css">
 	<script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
-	<link rel="icon" type="image/png" href="./assets/images/favicon.jpg">
+	<link rel="icon" type="image/png" href="/images/favicon.jpg">
 
 </head>
 
 <body>
-
+<!--vchat Logo-->
 	<a href="./index.html">
-		<img src="./assets/images/vchatLogo.png" style="position:absolute; top: 5%; right: 3%;" width="10.3%"
+		<img src="/images/vchatLogo.png" style="position:absolute; top: 5%; right: 3%;" width="10.3%"
 		alt="vChatLogo">
 	</a>
 
-
+	<!--video elemts container/hosting container-->
 	<div class="container">
 		<div class="videoElements">
+			<!--host side of the stream-->
 			<div class="host" id="host">
-				<img src="./assets/images/" alt="">
+				<img src="/images/" alt="">
 				<img class="hostBGChat" id="hostBGChat"
 					src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
-					width="150" height="360" alt="hostBGChat">
+					width="150" height="360" alt="hostBGChat"> <!--host bg-->
 				<img class="hostIconChat" id="hostIconChat"
 					src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
-					width="150" height="150" alt="hostIconChat">
-				<video poster="./assets/images/cameraDisabled.png" class="hostStream" id="hostStream" autoplay
-					playsinline width="640px" height="360px"></video>
+					width="150" height="150" alt="hostIconChat"> <!--host icons-->
+				<video poster="/images/cameraDisabled.png" class="hostStream" id="hostStream" autoplay
+					playsinline width="640px" height="360px"></video> <!--image disabled poster-->
 
 			</div>
+			<!--guest side of the stream-->
 
 			<div class="guest" id="guest">
-				<video poster="./assets/images/cameraDisabled.png" class="guestStream" id="guestStream" autoplay
-					playsinline width="640px" height="360px"></video>
+				<video poster="/images/cameraDisabled.png" class="guestStream" id="guestStream" autoplay 
+					playsinline width="640px" height="360px"></video> <!--image disabled poster-->
 				<img class="guestBGChat" id="guestBGChat"
 					src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
-					width="150" height="360" alt="cameraIcon">
+					width="150" height="360" alt="cameraIcon"> <!--guest bg-->
 				<img class="guestIconChat" id="guestIconChat"
 					src="https://media.discordapp.net/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
-					width="150" height="150" alt="cameraIcon">
+					width="150" height="150" alt="cameraIcon"> <!--guest icon-->
 
 			</div>
 		</div>
 	</div>
 
-	<div class="utilities">
+	<div class="utilities"> <!--utility functions such as mute microphone or disable camera-->
 		<button class="muteFunction" id="muteFunction"
-			title="you are currenly unmuted! click here if you want to be muted!">
-			<img class="micImage" id="micImage" src="./assets/images/micOpenLogo.png" alt="micIcon" height="100"
+			title="you are currenly unmuted! click here if you want to be muted!"> <!--mute function-->
+			<img class="micImage" id="micImage" src="/images/micOpenLogo.png" alt="micIcon" height="100"
 				width="100">
 		</button>
 
 
 		<button class="camFunction" id="camFunction"
-			title="your camera is currenly on! click here if you want to turn it off!">
-			<img class="camImage" id="camImage" src="./assets/images/cameraOnLogo.png" alt="camIcon" height="100"
+			title="your camera is currenly on! click here if you want to turn it off!"> <!--camera function-->
+			<img class="camImage" id="camImage" src="/images/cameraOnLogo.png" alt="camIcon" height="100"
 				width="100">
 		</button>
 	</div>
 
+	<!--call initiator builer-->
 	<div class="callConstructorContainer">
 		<div class="constructorElements">
 			<div id="st-box">
-				<label class="startupBoxes">allow media access</label>
+				<label class="startupBoxes">allow media access</label> <!--this is where the websites asks the user's for the user's webcam and micrphone access-->
 				<p class="subtext" style="color: black;">you <u>must</u> allow access to your webcam and microphone</p>
 				<button class="bufferBoxes"
 					style="border-radius: 25px 25px 0 0; width: 50%; height: 10%;"></button>
@@ -86,7 +89,7 @@
 			</div>
 
 			<div id="nd-box">
-				<label class="startupBoxes">create room id</label>
+				<label class="startupBoxes">create room id</label> <!--generates the chat id for the user to distrubte-->
 				<p class="subtext" style="color: black;">generate an id to invite users with</p>
 				<button disabled class="startupBoxesButton" id="callButton"
 					style="border-radius: 25px 25px 0 0; width: 50%; height: 10%;">generate</button>
@@ -97,7 +100,7 @@
 
 			<div id="rd-box">
 				<label class="startupBoxes">join room</label>
-				<p class="subtext" style="color: black;">if you have a chatroom id input it here join it</p>
+				<p class="subtext" style="color: black;">if you have a chatroom id input it here join it</p> <!--location for the users to input chat id to join the room-->
 				<button class="bufferBoxes" style="border-radius: 25px 25px 0 0; width: 50%; height: 10%;"></button>
 				<input class="startupBoxesButton" type="text" id="joinCallInput" placeholder="input here . . ." required>
 				<button disabled class="startupBoxesButton" id="joinFunction"
@@ -107,7 +110,7 @@
 		</div>
 	</div>
 
-	<script type="module" src="/main.js"></script>
+	<script type="module" src="/main.js"></script> <!--import's further code to assist in the video capabilities-->
 
 </body>
 

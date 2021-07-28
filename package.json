@@ -10,7 +10,6 @@
     "vite": "^2.4.4"
   },
   "dependencies": {
-    "@vite/vitejs": "^2.3.14",
     "firebase": "^8.8.0",
     "webrtc": "^1.14.1"
   }
