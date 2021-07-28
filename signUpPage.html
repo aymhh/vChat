@@ -6,8 +6,8 @@
 <html>
 
 <head>
-<!--Website MetaData-->
-<title>vChat - Sign Up</title>
+  <!--Website MetaData-->
+  <title>vChat - Sign Up</title>
   <meta name="description" content="SAT Project">
   <meta property="og:title" content="vChat - Official Website">
   <meta property="og:site_name" content="vChat">
@@ -15,35 +15,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="/stylesheet.css">
-  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script> <!--Modules Import MetaData-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script><!--Modules Import MetaData-->
+  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+  <!--Modules Import MetaData-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+  <!--Modules Import MetaData-->
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous">
-    </script><!--Modules Import MetaData-->
+    crossorigin="anonymous"></script>
+  <!--Modules Import MetaData-->
   <link rel="icon" type="image/png" href="/images/favicon.jpg">
 
 </head>
 
 <!--Beginning of the website-->
 
-<body>
+<body onload="mobileSite()">
 
-  	<!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
-	<script>
-		if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) return window.location.href = '/mobileSite.html'
-	</script>
+  <!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
+  <script>
+    function mobileSite() {
+      if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        return window.location.href = '/mobileSite.html'
+    }
+  </script>
 
   <!--Website Logo-->
   <div class="logo2">
     <a href="./index.html">
-      <img src="/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%"
-        alt="vChatLogo">
+      <img src="/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
     </a>
   </div>
 
   <!--Beginning of the website's sign up container-->
-  <form 
-    id="signUpForm" class="loginContainer" style="height: 79%;" method="GET" action="./profilePage.html">
+  <form id="signUpForm" class="loginContainer" style="height: 79%;" method="GET" action="./profilePage.html">
 
     <label class="headerBarLogin">
       <b>sign up</b>
@@ -86,12 +89,14 @@
         // username validation
         const usernameString = username.value.toLowerCase();
         const usernameArray = usernameString.split(" ");
-        
-        if(username.value.includes(" ")) return alert("your username can NOT have any spaces")
+
+        if (username.value.includes(" ")) return alert("your username can NOT have any spaces")
 
 
 
-        db.collection('users').doc({ username: username.value }).get().then(document => { 
+        db.collection('users').doc({
+          username: username.value
+        }).get().then(document => {
           if (document === undefined) { // if no document is found with the username, then that means it doesn't exist and will procceed to make a document (create the user) with the informaition provided within the input fields
             db.collection('users').add({
               email: email.value,
@@ -108,7 +113,8 @@
       })
     </script>
 
-    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 8%;">login!</button> <!--button to login-->
+    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 8%;">login!</button>
+    <!--button to login-->
 
   </form>
 

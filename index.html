@@ -5,6 +5,7 @@
 
 <html>
 <!--Website's metadata-->
+
 <head>
 	<title>vChat - Official Website</title>
 	<meta name="description" content="SAT Project">
@@ -23,26 +24,30 @@
 	<!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
 	<script>
 		function mobileSite() {
-			if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) return window.location.href = '/mobileSite.html'
+			if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+				return window.location.href = '/mobileSite.html'
 		}
 	</script>
 
 	<script>
-		alert("WARNING:\n Do NOT sign up with your actual email and/or password you use for other sites.\nYou have been warned.\n(ʃƪ¬‿¬)")
+		alert(
+			"WARNING:\n Do NOT sign up with your actual email and/or password you use for other sites.\nYou have been warned.\n(ʃƪ¬‿¬)")
 	</script>
 
 	<!--Beginning of constructor for the website.-->
 	<div class="container">
 		<div class="accessButtonsContainer">
-			<a href="./loginPage.html"> 	<!--Button to send you to the login page.-->
-				<img class="accessButtons" src="/images/testPlane.png"
-					style="position:fixed; top: 100px; right: -5px;" height="77" width="165">
+			<a href="./loginPage.html">
+				<!--Button to send you to the login page.-->
+				<img class="accessButtons" src="/images/testPlane.png" style="position:fixed; top: 100px; right: -5px;"
+					height="77" width="165">
 				<div class="accessButtonsText" style="position:fixed; top: 120px; right: 41px;">login</div>
 			</a>
 
-			<a href="./signUpPage.html"> 	<!--Button to send you to the sign up page.-->
-				<img class="accessButtons" src="/images/testPlane.png"
-					style="position:fixed; top: 197px; right: -5px;" height="77" width="221">
+			<a href="./signUpPage.html">
+				<!--Button to send you to the sign up page.-->
+				<img class="accessButtons" src="/images/testPlane.png" style="position:fixed; top: 197px; right: -5px;"
+					height="77" width="221">
 				<div class="accessButtonsText" style="position:fixed; top: 215px; right: 41px;">sign up</div>
 			</a>
 		</div>
@@ -61,17 +66,20 @@
 		<div class="items">
 			<div>
 				<img src="/images/camera.png" width="150" height="150" alt="cameraIcon">
-				<p class="indexSubtext"><i>stream your webcam</i></p>  	<!--Stream webcam icon.-->
+				<p class="indexSubtext"><i>stream your webcam</i></p>
+				<!--Stream webcam icon.-->
 			</div>
 
 			<div>
 				<img src="/images/zapIcon.png" width="150" height="150" alt="cameraIcon">
-				<p class="indexSubtext"><i>real time communication</i></p> 	<!--zap icon.-->
+				<p class="indexSubtext"><i>real time communication</i></p>
+				<!--zap icon.-->
 			</div>
 
 			<div>
 				<img src="/images/community.png" width="150" height="150" alt="cameraIcon">
-				<p class="indexSubtext"><i>peer to peer</i></p>  	<!--peer to peer icon.-->
+				<p class="indexSubtext"><i>peer to peer</i></p>
+				<!--peer to peer icon.-->
 			</div>
 		</div>
 

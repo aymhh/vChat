@@ -57,7 +57,7 @@ const answerButton = document.getElementById('joinFunction');
 const remoteVideo = document.getElementById('guestStream');
 const muteButton = document.getElementById("muteFunction")
 const cameraButton = document.getElementById("camFunction")
-
+const scrollDownElement = document.getElementById("scrollDown")
 
 
 // setup media sources
@@ -83,6 +83,8 @@ webcamButton.onclick = async () => {
 
   // allows access ot the next buttons
   callButton.disabled = false;
+  callButton.style.ba
+  scrollDownElement.style.display = "none"
   answerButton.disabled = false;
   webcamButton.disabled = true;
 }

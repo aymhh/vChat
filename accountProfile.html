@@ -13,26 +13,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="/stylesheet.css">
-	<script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script><!--Modules Import MetaData-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script><!--Modules Import MetaData-->
+	<script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+	<!--Modules Import MetaData-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+	<!--Modules Import MetaData-->
 	<link rel="icon" type="image/png" href="/images/favicon.jpg">
 
 </head>
 
-<body>
+<body onload="mobileSite()">
 
-	  	<!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
-		  <script>
-			if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) return window.location.href = '/mobileSite.html'
-		</script>
-	
+	<!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
+	<script>
+		function mobileSite() {
+			if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+				return window.location.href = '/mobileSite.html'
+		}
+	</script>
+
+
 
 	<!--Website Logo-->
 	<div class="logo2">
 		<a href="./index.html">
-			<img 	src="/images/vchatLogo.png" 
-					style="position:absolute; top: 5%; left: 3%;" width="10.3%"
-					alt="vChatLogo">
+			<img src="https://cdn.discordapp.com/attachments/846374789156831272/865178398045110272/defaultCharacter.png"
+				style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
 		</a>
 	</div>
 
@@ -40,82 +45,60 @@
 	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET">
 		<!--Their profile picture would be showing here-->
 		<label class="profileAccountHeader">
-			<img 	style="position: relative; top: -35px;" 
-					class="userIcon2"
-					id="profileAccountHeader"
-					src="/images/testIcon.jpg" 
-					width="200"
-					height="200" 
-					alt="profilePicture"
-					>
+			<img style="position: relative; top: -35px;" class="userIcon2" id="profileAccountHeader"
+				src="/images/testIcon.jpg" width="200" height="200" alt="profilePicture">
 		</label>
 
+		
+		<!--input feild for the profile picture URL-->
 		<div class="loginBarFonts" style="top: 13%;">
 			<i><abbr
 					title="Paste the direct link to the image, you can upload your image to discord and 'Copy Link' for free and easy hosting!">change
 					profile picture?</abbr></i>
 		</div>
-
-		<input 	class="loginBar" 
-				required
-				id="pfp" 
-				type="url" 
-				style="margin-top: 16%;"
-				placeholder="paste direct url of the image"
-				value="user profile picture link goes here"
-				>
-
+		<input class="loginBar" required id="pfp" type="url" style="margin-top: 16%;"
+			placeholder="paste direct url of the image" value="user profile picture link goes here">
+		
+		
 		<!--Input field for email-->
 		<div class="loginBarFonts" style="top: 2%;">
 			<i>email address</i>
 		</div>
+		<input class="loginBar" required id="email" type="email" style="margin-top: 2%;" value="user email goes here">
 
-		<input 	class="loginBar"
-				required
-				id="email" 
-				type="email" 
-				style="margin-top: 2%;"
-				value="user email goes here"
-				>
-		
 
+		<!--feild for password, unable to be changed due to the nature of the data arragnment-->
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i><abbr
-				title="You are not able to change your username. If you wish to go under a new allias, create a new account.">username</abbr></i>
+					title="You are not able to change your username. If you wish to go under a new allias, create a new account.">username</abbr></i>
 		</div>
+		<input class="loginBar" id="uid" type="text" required readonly value="username goes here">
 
-		<input 	class="loginBar" 
-				id="uid" 
-				type="text"
-				required
-				readonly
-				value="username goes here"
-				>
+
 		<!--Input field for password-->
-
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i>password</i>
 		</div>
+		<input class="loginBar" id="pwd" type="password" required minlength="6" value="user password goes here">
 
-		<input class="loginBar" 
-				id="pwd" 
-				type="password" 
-				auto-complete="on" 
-				required
-				minlength="6" 
-				value="user password goes here"
-				title="Your password must be atleast 6 characters, numbers and only underscores are accepted."
-				>
-				
+
+		<!--confrim password dialouge-->
+		<div class="loginBarFonts" style="margin-top: 2%;">
+			<i>confirm password</i>
+		</div>
+		<input class="loginBar" id="pwd" type="password" required minlength="6" value="user password goes here">
+
 		<script>
 			// construsctor for the elements to be used
-			
+
 			const db = new Localbase("vChatDataBase");
 			const pageCookie = Cookies.get('cookieUsername') // gets the page cookie
 			const updateButton = document.getElementById("accProfileForm");
-			
+
 			// gets the user's data from the page cookie and uses that to fetch the user's details, it further updates it
-			db.collection('users').doc({ username: pageCookie }).get().then(doc => {
+			db.collection('users').doc({
+				username: pageCookie
+			}).get().then(doc => {
 				document.getElementById("profileAccountHeader").src = doc[`icon`]
 				document.getElementById("pfp").value = doc[`icon`];
 				document.getElementById("email").value = doc[`email`];
@@ -125,23 +108,25 @@
 
 			// creates a event listener to know when the button is pressed and what to do when it happens
 			updateButton.addEventListener('submit', function (e) {
-				
+
 				e.preventDefault();
 
 				const icon = document.getElementById("pfp");
 				const email = document.getElementById("email");
 				const username = document.getElementById("uid");
 				const password = document.getElementById("pwd");
-				
+
 				// updates the values when the button is pressed (even if the details hasn't changed)
-				
-				db.collection('users').doc({ username: username.value }).set({
-				  email: email.value, 
-				  username: username.value,
-				  password: password.value,
-				  icon: icon.value
+
+				db.collection('users').doc({
+					username: username.value
+				}).set({
+					email: email.value,
+					username: username.value,
+					password: password.value,
+					icon: icon.value
 				});
-				
+
 				alert("Your details have been updated!")
 				return window.location.href = './profilePage.html' // redirects them back to the page
 			})

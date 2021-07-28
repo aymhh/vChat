@@ -474,11 +474,11 @@ html, body {
 	background-color: white;
 }
 
-.startupBoxes {
+.Boxes {
 	width: 96%;
 	height: 20%;
 	margin-left: 2%;
-	background-color: #6e84c8;
+	background-color: #5369ab;
 	font-family: ArkiReg;
 	color: white;
 	font-size: 25px;
@@ -488,7 +488,7 @@ html, body {
 }
 
 .startupBoxesButton {
-	background-color: #354163; 
+	background-color: #4d6093; 
 	text-indent: 5%;
 	color: white;
 	border: none;

@@ -14,23 +14,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="/stylesheet.css">
-  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script><!--Modules Import MetaData-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script><!--Modules Import MetaData-->
+  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
+  <!--Modules Import MetaData-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+  <!--Modules Import MetaData-->
   <link rel="icon" type="image/png" href="/images/favicon.jpg">
 
 </head>
 
-<body>
-  	<!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
-    <script>
-      if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) return window.location.href = '/mobileSite.html'
-    </script>
-  
+<body onload="mobileSite()">
+
+  <!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
+  <script>
+    function mobileSite() {
+      if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        return window.location.href = '/mobileSite.html'
+    }
+  </script>
+
   <!--Corner logo for the website-->
   <div class="logo2">
     <a href="./index.html">
-      <img src="/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%"
-        alt="vChatLogo">
+      <img src="/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
     </a>
   </div>
 
@@ -57,7 +62,6 @@
 
 
     <script>
-
       const submitButton = document.getElementById("form");
       const username = document.getElementById('uid');
       const password = document.getElementById('pwd');
@@ -75,7 +79,9 @@
         db.config.debug = false
 
 
-        db.collection('users').doc({ username: username.value }).get().then(document => {
+        db.collection('users').doc({
+          username: username.value
+        }).get().then(document => {
           if (document === undefined) {
             alert("No user exists with this username!")
           } else {
