@@ -1,7 +1,15 @@
+// By: Ameer Al-Shamaa
+// On: 28/07/2021
+
+// import meta data
+
 import './stylesheet.css';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+
+
+// data  base informaiton
 
 const firebaseConfig = {
   apiKey: "AIzaSyB4HDuJzJKITVFjApCQcCQy11_QSRE3X7k",
@@ -13,14 +21,18 @@ const firebaseConfig = {
   measurementId: "G-BL2RDETRWQ"
 };
 
+// if there is no data on the firebase, create them with the firebaseConfig variable
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
+// some constant setups for databases
 const firestore = firebase.firestore();
 const db = new Localbase("vChatDataBase");
 const cookieUsername = Cookies.get('cookieUsername');
 const cookieIcon = Cookies.get('cookieIcon');
 
+// stun servers
 const servers = {
   iceServers: [
     {
@@ -30,7 +42,7 @@ const servers = {
   iceCandidatePoolSize: 10,
 };
 
-// Global State
+// Global State for events
 const pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
@@ -63,9 +75,11 @@ webcamButton.onclick = async () => {
     });
   };
 
+  // update users objects with the fected streams from before
   webcamVideo.srcObject = localStream;
   remoteVideo.srcObject = remoteStream;
 
+  // allows access ot the next buttons
   callButton.disabled = false;
   answerButton.disabled = false;
   webcamButton.disabled = true;
@@ -78,6 +92,7 @@ callButton.onclick = async () => {
   const offerCandidates = callDoc.collection('offerCandidates');
   const answerCandidates = callDoc.collection('answerCandidates');
 
+  // inserts the updated invite code into the input feild to invite others
   callInput.value = callDoc.id;
 
   // Get candidates for caller, save to db
@@ -91,6 +106,7 @@ callButton.onclick = async () => {
   const offerDescription = await pc.createOffer();
   await pc.setLocalDescription(offerDescription);
 
+  // updates the document with the call room creation data
   const offer = {
     sdp: offerDescription.sdp,
     type: offerDescription.type,
@@ -123,16 +139,19 @@ callButton.onclick = async () => {
 };
 
 // 3. Answer the call with the unique ID
+// Similar steps happen here just like creating data, just this time with the guest's information BUT as an answer to the offer
 answerButton.onclick = async () => {
   const callId = joinCallInput.value;
   const callDoc = firestore.collection('calls').doc(callId);
   const answerCandidates = callDoc.collection('answerCandidates');
   const offerCandidates = callDoc.collection('offerCandidates');
 
+  // creates the user object
   pc.onicecandidate = (event) => {
     event.candidate && answerCandidates.add(event.candidate.toJSON());
   };
 
+  // fetch's the data
   const callData = (await callDoc.get()).data();
 
   const offerDescription = callData.offer;
@@ -141,6 +160,7 @@ answerButton.onclick = async () => {
   const answerDescription = await pc.createAnswer();
   await pc.setLocalDescription(answerDescription);
 
+  // updates data with the answer's details
   const answer = {
     type: answerDescription.type,
     sdp: answerDescription.sdp,
@@ -150,18 +170,19 @@ answerButton.onclick = async () => {
 
   await callDoc.update({ answer });
 
-  // updating guest with host
+  // updating guest icons with host icons
   const guestIconChat = document.getElementById("guestIconChat")
   guestIconChat.src = callData.offer.hostpfp
   const guestBGChat = document.getElementById("guestBGChat")
   guestBGChat.src = callData.offer.hostpfp
 
-  // updating host with guest
+  // updating host icons with guest icons
   const hostIconChat = document.getElementById("hostIconChat")
   hostIconChat.src = callData.request.guestpfp
   const hostBGChat = document.getElementById("hostBGChat")
   hostBGChat.src = callData.request.guestpfp
 
+  // add user's the the call based on the data from the collection
   offerCandidates.onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
       console.log(change);
@@ -173,7 +194,7 @@ answerButton.onclick = async () => {
   });
 };
 
-
+// fetch's the host's data and applies it to the host
 db.collection('users').doc({ username: cookieUsername }).get().then(doc => {
   document.getElementById("hostIconChat").src = doc[`icon`];
   document.getElementById("hostBGChat").src = doc[`icon`];
