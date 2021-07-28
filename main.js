@@ -3,10 +3,10 @@
 
 // import meta data
 
-import './stylesheet.css';
+import './stylesheet.css'; // imports the CSS 
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from 'firebase/app'; // module importing
+import 'firebase/firestore'; // module importing
 
 
 // data  base informaiton
@@ -32,7 +32,7 @@ const db = new Localbase("vChatDataBase");
 const cookieUsername = Cookies.get('cookieUsername');
 const cookieIcon = Cookies.get('cookieIcon');
 
-// stun servers
+// stun servers for intitalizing the connection
 const servers = {
   iceServers: [
     {
@@ -47,7 +47,7 @@ const pc = new RTCPeerConnection(servers);
 let localStream = null;
 let remoteStream = null;
 
-// HTML elements
+// HTML elements, collecing the buttons and input fields from the webpage
 const webcamButton = document.getElementById('webcamButton');
 const webcamVideo = document.getElementById('hostStream');
 const callButton = document.getElementById('callButton');
@@ -55,13 +55,15 @@ const callInput = document.getElementById('callInput');
 const joinCallInput = document.getElementById("joinCallInput");
 const answerButton = document.getElementById('joinFunction');
 const remoteVideo = document.getElementById('guestStream');
+const muteButton = document.getElementById("muteFunction")
+const cameraButton = document.getElementById("camFunction")
 
 
 
-// 1. Setup media sources
+// setup media sources
 webcamButton.onclick = async () => {
-  localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-  remoteStream = new MediaStream();
+  localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }); // when the "get media" button is clicked hten the browser will ask to the users to fetch their webcam and mic
+  remoteStream = new MediaStream(); 
   
   // Push tracks from local stream to peer connection
   localStream.getTracks().forEach((track) => {
@@ -85,24 +87,24 @@ webcamButton.onclick = async () => {
   webcamButton.disabled = true;
 }
 
-// 2. Create an offer
+// creating a call room/offer when the second button is pressed.
 callButton.onclick = async () => {
-  // Reference Firestore collections for signaling
-  const callDoc = firestore.collection('calls').doc();
-  const offerCandidates = callDoc.collection('offerCandidates');
-  const answerCandidates = callDoc.collection('answerCandidates');
+  // reference firestore collections for signaling
+  const callDoc = firestore.collection('calls').doc(); // fetching the documents
+  const offerCandidates = callDoc.collection('offerCandidates'); // fetching the documents
+  const answerCandidates = callDoc.collection('answerCandidates'); // fetching the documents
 
   // inserts the updated invite code into the input feild to invite others
   callInput.value = callDoc.id;
 
-  // Get candidates for caller, save to db
+  // get candidates for caller, save to db
   pc.onicecandidate = (event) => {
     event.candidate && offerCandidates.add(event.candidate.toJSON());
   };
 
   
 
-  // Create the actual offer
+  // create the actual offer using the generated code from line 96
   const offerDescription = await pc.createOffer();
   await pc.setLocalDescription(offerDescription);
 
@@ -114,10 +116,11 @@ callButton.onclick = async () => {
     hostpfp: cookieIcon
   };
 
+  // updates the document with the offer object which was made line 110
   await callDoc.set({ offer });
 
 
-  // Listen for remote answer
+  // listen for remote answer
   callDoc.onSnapshot((snapshot) => {
     const data = snapshot.data();
     if (!pc.currentRemoteDescription && data?.answer) {
@@ -126,7 +129,7 @@ callButton.onclick = async () => {
     }
   });
 
-  // When answered, add candidate to peer connection
+  // when answered, add candidate to peer connection
   answerCandidates.onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
       if (change.type === 'added') {
@@ -138,7 +141,7 @@ callButton.onclick = async () => {
   });
 };
 
-// 3. Answer the call with the unique ID
+// answer the call with the unique ID
 // Similar steps happen here just like creating data, just this time with the guest's information BUT as an answer to the offer
 answerButton.onclick = async () => {
   const callId = joinCallInput.value;
@@ -160,7 +163,7 @@ answerButton.onclick = async () => {
   const answerDescription = await pc.createAnswer();
   await pc.setLocalDescription(answerDescription);
 
-  // updates data with the answer's details
+  // updates the document with the guest answer data
   const answer = {
     type: answerDescription.type,
     sdp: answerDescription.sdp,
@@ -168,6 +171,7 @@ answerButton.onclick = async () => {
     guestpfp: cookieIcon
   };
 
+  // updates the document with the guest data
   await callDoc.update({ answer });
 
   // updating guest icons with host icons
@@ -176,13 +180,7 @@ answerButton.onclick = async () => {
   const guestBGChat = document.getElementById("guestBGChat")
   guestBGChat.src = callData.offer.hostpfp
 
-  // updating host icons with guest icons
-  const hostIconChat = document.getElementById("hostIconChat")
-  hostIconChat.src = callData.request.guestpfp
-  const hostBGChat = document.getElementById("hostBGChat")
-  hostBGChat.src = callData.request.guestpfp
-
-  // add user's the the call based on the data from the collection
+  // add user's the the call based on the data from the collection information
   offerCandidates.onSnapshot((snapshot) => {
     snapshot.docChanges().forEach((change) => {
       console.log(change);
@@ -201,7 +199,6 @@ db.collection('users').doc({ username: cookieUsername }).get().then(doc => {
 })
 
 // mic button
-const muteButton = document.getElementById("muteFunction")
 muteButton.addEventListener("click", function (e) {
   const micOpen = "micOpenLogo.png"
   const micClose = "micClosedLogo.png"
@@ -217,7 +214,6 @@ muteButton.addEventListener("click", function (e) {
 
 
 // camera button
-const cameraButton = document.getElementById("camFunction")
 cameraButton.addEventListener("click", function (e) {
   const camOpen = "cameraOnLogo.png"
   const camClose = "cameraOffLogo.png"
