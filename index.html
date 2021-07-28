@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--By: Ameer Al-Shamaa-->
 <!--27/07/2021-->
+<!--index.html: The face of the website-->
 
 <html>
 <!--Website's metadata-->
@@ -20,19 +21,26 @@
 <body>
 
 	<script>
-		alert("WARNING:\n Do NOT sign up with your actual email and/or password you use for other sites. Security of information was not the focus of this application.\nYou have been warned.\n(ʃƪ¬‿¬)")
+		if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ 		alert("mobile device detected!")
+	}
+
+	</script>
+
+	<script>
+		alert("WARNING:\n Do NOT sign up with your actual email and/or password you use for other sites.\nYou have been warned.\n(ʃƪ¬‿¬)")
 	</script>
 
 	<!--Beginning of constructor for the website.-->
 	<div class="container">
 		<div class="accessButtonsContainer">
-			<a href="./loginPage.html">
+			<a href="./loginPage.html"> 	<!--Button to send you to the login page.-->
 				<img class="accessButtons" src="/images/testPlane.png"
 					style="position:fixed; top: 100px; right: -5px;" height="77" width="165">
 				<div class="accessButtonsText" style="position:fixed; top: 120px; right: 41px;">login</div>
 			</a>
 
-			<a href="./signUpPage.html">
+			<a href="./signUpPage.html"> 	<!--Button to send you to the sign up page.-->
 				<img class="accessButtons" src="/images/testPlane.png"
 					style="position:fixed; top: 197px; right: -5px;" height="77" width="221">
 				<div class="accessButtonsText" style="position:fixed; top: 215px; right: 41px;">sign up</div>
@@ -49,21 +57,21 @@
 			<p class="header"><b>THE BEST WAY TO WORK</b></p>
 		</div>
 
-		<!--Icons of th  page with their description-->
+		<!--Icons of the page with their description-->
 		<div class="items">
 			<div>
 				<img src="/images/camera.png" width="150" height="150" alt="cameraIcon">
-				<p class="indexSubtext"><i>stream your webcam</i></p>
+				<p class="indexSubtext"><i>stream your webcam</i></p>  	<!--Stream webcam icon.-->
 			</div>
 
 			<div>
 				<img src="/images/zapIcon.png" width="150" height="150" alt="cameraIcon">
-				<p class="indexSubtext"><i>real time communication</i></p>
+				<p class="indexSubtext"><i>real time communication</i></p> 	<!--zap icon.-->
 			</div>
 
 			<div>
 				<img src="/images/community.png" width="150" height="150" alt="cameraIcon">
-				<p class="indexSubtext"><i>peer to peer</i></p>
+				<p class="indexSubtext"><i>peer to peer</i></p>  	<!--peer to peer icon.-->
 			</div>
 		</div>
 
