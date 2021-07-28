@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <!--By: Ameer Al-Shamaa-->
 <!--27/07/2021-->
+<!--signUpPage.html: The account sign up page.-->
+
 <html>
 
 <head>
 <!--Website MetaData-->
-
-  <title>vChat - Sign Up</title>
+<title>vChat - Sign Up</title>
   <meta name="description" content="SAT Project">
   <meta property="og:title" content="vChat - Official Website">
   <meta property="og:site_name" content="vChat">
@@ -14,11 +15,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
   <link rel="stylesheet" href="/stylesheet.css">
-  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+  <script src="https://unpkg.com/localbase/dist/localbase.dev.js"></script> <!--Modules Import MetaData-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script><!--Modules Import MetaData-->
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
     crossorigin="anonymous">
-    </script>
+    </script><!--Modules Import MetaData-->
   <link rel="icon" type="image/png" href="/images/favicon.jpg">
 
 </head>
@@ -27,6 +28,12 @@
 
 <body>
 
+  	<!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
+	<script>
+		if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) return window.location.href = '/mobileSite.html'
+	</script>
+
+  <!--Website Logo-->
   <div class="logo2">
     <a href="./index.html">
       <img src="/images/vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%"
@@ -34,8 +41,9 @@
     </a>
   </div>
 
-
-  <form id="signUpForm" class="loginContainer" style="height: 79%;" method="GET" action="./profilePage.html">
+  <!--Beginning of the website's sign up container-->
+  <form 
+    id="signUpForm" class="loginContainer" style="height: 79%;" method="GET" action="./profilePage.html">
 
     <label class="headerBarLogin">
       <b>sign up</b>
@@ -47,56 +55,44 @@
 
     <input class="loginBar" id="email" type="email" placeholder=". . ." required style="margin-top: 7%;">
 
-
+    <!--Username input field-->
     <div class="loginBarFonts" style="top: 4%;">
-      <i><abbr
-          title="Your username must be between 4-16 characters, numbers and special characters (! @ # ?) are accepted.">username</abbr></i>
+      <i>username</i>
     </div>
 
     <input class="loginBar" id="uid" placeholder=". . ." minlength="4" required style="margin-top: 6%;">
 
-
+    <!--Password input field-->
     <div class="loginBarFonts" style="top: 4%;">
-      <i><abbr
-          title="Your password must be between 6-16 characters, numbers and special characters (! @ # ?) are accepted.">password</abbr></i>
+      <i>password</i>
     </div>
 
     <input class="loginBar" id="pwd" autocomplete="on" type="password" minlength="6" placeholder=". . ." required
       style="margin-top: 6%;">
 
     <script>
+      // global variables, gets the elements from the page
       const loginButton = document.getElementById("signUpForm");
       const email = document.getElementById("email");
       const username = document.getElementById("uid");
       const password = document.getElementById("pwd");
-      const db = new Localbase("vChatDataBase")
+      const db = new Localbase("vChatDataBase") // data base initation
 
 
-      loginButton.addEventListener('submit', function (e) {
-
-        const restrictedString = `
-        ,nigger,naggar,nagga,nogger,nigg3r,nigg4,nigga,n!gger,n!gga,coon,c00n,negro,fag,faggot,niggers,niggas,n1gger,n1gga,n1gg3r,n1ger,nigga,nigger,faggots,fags,nagger,nogger,negger,niggar,cunt,feggot,feg,naggar,co0n,c0on,cunts,clut,kunt,kunts,nigges,kys,cunt.,dick,sex,s3x,5ex,53x,whore,c0ck,slut,nigg,retard,blowjob,buttplug,clitoris,f4g,c00,co0,negg`
-        const restrictedArray = restrictedString.split(",")
-
+      loginButton.addEventListener('submit', function (e) { // listner to know when the button is clicked and what to do with the request
 
         e.preventDefault();
 
-        for (x = 0; x < restrictedArray.length; x++) {
-          if (username.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible usernames please.")
-          if (email.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible emails please.")
-          if (password.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible passwords please.")
-        }
+        // username validation
+        const usernameString = username.value.toLowerCase();
+        const usernameArray = usernameString.split(" ");
+        
+        if(username.value.includes(" ")) return alert("your username can NOT have any spaces")
 
-        const filterString = "!,@,#,$,%,^,&,*,(,),?,',;,[,],{,}=,+,-"
-        const filterArray = filterString.split(",")
 
-        if (username.value.length >= 13) return alert("Your username is too long!\nMust be between 6-12 characters.")
-        for (let i = 0; i < filterArray.length; i++) {
-          if (password.value.includes(filterArray)) return alert("nono in password :)")
-        }
 
-        db.collection('users').doc({ username: username.value }).get().then(document => {
-          if (document === undefined) {
+        db.collection('users').doc({ username: username.value }).get().then(document => { 
+          if (document === undefined) { // if no document is found with the username, then that means it doesn't exist and will procceed to make a document (create the user) with the informaition provided within the input fields
             db.collection('users').add({
               email: email.value,
               username: username.value,
@@ -105,14 +101,14 @@
             }, username.value)
             Cookies.set('cookieUsername', username.value)
             return window.location.href = './profilePage.html'
-          } else {
+          } else { // however, if it does NOT return undefined, then a user does exist and will tell pick another username to avoid discord
             return alert("An account with this username already exists. Please pick a different username.")
           }
         })
       })
     </script>
 
-    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 8%;">login!</button>
+    <button type="submit" id="loginButton" class="loginButton" style="margin-top: 8%;">login!</button> <!--button to login-->
 
   </form>
 
