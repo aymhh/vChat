@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--By: Ameer Al-Shamaa-->
+<!--27/07/2021-->
 
 <html>
 
@@ -18,7 +20,7 @@
 </head>
 
 <body>
-	
+	<!--Website Logo-->
 
 	<div class="logo2">
 		<a href="./index.html">
@@ -28,9 +30,9 @@
 		</a>
 	</div>
 
-
+	<!--Beginning of the container for the login form-->
 	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET">
-
+		<!--Their profile picture would be showing here-->
 		<label class="profileAccountHeader">
 			<img 	style="position: relative; top: -35px;" 
 					class="userIcon2"
@@ -56,8 +58,8 @@
 				placeholder="paste direct url of the image"
 				value="user profile picture link goes here"
 				>
-		
 
+		<!--Input field for email-->
 		<div class="loginBarFonts" style="top: 2%;">
 			<i>email address</i>
 		</div>
@@ -69,7 +71,7 @@
 				style="margin-top: 2%;"
 				value="user email goes here"
 				>
-
+		
 
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i><abbr
@@ -83,6 +85,7 @@
 				readonly
 				value="username goes here"
 				>
+		<!--Input field for password-->
 
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i>password</i>
@@ -99,11 +102,13 @@
 				>
 				
 		<script>
+			// construsctor for the elements to be used
+			
 			const db = new Localbase("vChatDataBase");
-			const pageCookie = Cookies.get('cookieUsername')
+			const pageCookie = Cookies.get('cookieUsername') // gets the page cookie
 			const updateButton = document.getElementById("accProfileForm");
 			
-			
+			// gets the user's data from the page cookie and uses that to fetch the user's details, it further updates it
 			db.collection('users').doc({ username: pageCookie }).get().then(doc => {
 				document.getElementById("profileAccountHeader").src = doc[`icon`]
 				document.getElementById("pfp").value = doc[`icon`];
@@ -112,6 +117,7 @@
 				document.getElementById("pwd").value = doc[`password`];
 			})
 
+			// creates a event listener to know when the button is pressed and what to do when it happens
 			updateButton.addEventListener('submit', function (e) {
 				
 				e.preventDefault();
@@ -121,6 +127,7 @@
 				const username = document.getElementById("uid");
 				const password = document.getElementById("pwd");
 				
+				// updates the values when the button is pressed (even if the details hasn't changed)
 				
 				db.collection('users').doc({ username: username.value }).set({
 				  email: email.value, 
@@ -130,7 +137,7 @@
 				});
 				
 				alert("Your details have been updated!")
-				return window.location.href = './profilePage.html'
+				return window.location.href = './profilePage.html' // redirects them back to the page
 			})
 		</script>
 

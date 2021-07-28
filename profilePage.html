@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!--By: Ameer Al-Shamaa-->
+<!--27/07/2021-->
 
 <html>
 
@@ -21,7 +23,7 @@
 </head>
 
 <body>
-
+	<!--Fetches the cookie from the browser-->
 	<script>
 		let pageCookie = Cookies.get('cookieUsername');
 		console.log(pageCookie + " cookie fetched");
@@ -37,12 +39,13 @@
 
 
 	<div class="container">
-
+		<!--Subtitle header-->
 		<div class="header" style="font-size: 80px;">
 			<b>LET'S GET STARTED!</b>
 		</div>
 
 
+		<!--Items to send you to rooms or go to your account profile to edit your profile picture-->
 		<div class="profileContainer">
 
 			<button class="profileItem" id="rooms">
@@ -65,21 +68,24 @@
 				const db = new Localbase("vChatDataBase");
 				const icon = document.getElementById("userIcon")
 
+				// fetches the user data from the cookie and then updates the icon on the profile picture
 				db.collection('users').doc({ username: pageCookie }).get().then(doc => {
 					icon.src = doc[`icon`];
 					Cookies.set("cookieIcon", doc['icon'])
 				})
 
+				// if the image returns an error then it'll send an alert telling them something went wrong and will redirect them to update it
 				icon.addEventListener("error", () => {
 					alert(`X_X\nunable to load your profile picture, this is because of a bad link you provided. makes sure the link is valid and it ends in\n1. png\n2. jpg\n3. jpeg\n4. gif`)
 					return window.location.href = './accountProfile.html'
 				})
 
+				// if the profile pricture button is clicked then it'll send them to the account profile page
 				const profileButton = document.getElementById("userIcon")
 				profileButton.addEventListener("click", function (e) {
 					return window.location.href = './accountProfile.html'
 				})
-
+				// if the rooms page button is clicked then it'll send them to the rooms page
 				const rooomsButton = document.getElementById("rooms")
 				rooomsButton.addEventListener("click", function (e) {
 					

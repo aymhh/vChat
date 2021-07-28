@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-
+<!--By: Ameer Al-Shamaa-->
+<!--27/07/2021-->
 <html>
 
 <head>
+<!--Website MetaData-->
 
   <title>vChat - Sign Up</title>
   <meta name="description" content="SAT Project">
@@ -21,7 +23,7 @@
 
 </head>
 
-
+<!--Beginning of the website-->
 
 <body>
 
@@ -81,8 +83,8 @@
 
         for (x = 0; x < restrictedArray.length; x++) {
           if (username.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible usernames please.")
-          if (email.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible email please.")
-          if (password.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible password please.")
+          if (email.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible emails please.")
+          if (password.value.includes(restrictedArray[x])) return alert("don't be stupid (* ￣︿￣)\nuse sensible passwords please.")
         }
 
         const filterString = "!,@,#,$,%,^,&,*,(,),?,',;,[,],{,}=,+,-"
