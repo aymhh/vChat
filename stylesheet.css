@@ -286,8 +286,10 @@ html, body {
 
 .soontm {
 	font-family: ArkiThin;
-	font-size: 70px;
+	font-size: 40px;
 	color: white;
+	justify-items: center;
+	text-align: center;
 }
 
 .soontm:hover {
@@ -517,4 +519,11 @@ html, body {
 
 .guestStream {
 	object-fit: cover;
+}
+
+.scrollDown {
+	position:absolute;
+	color: white;
+	left: 20%;
+	bottom: 10%;
 }
