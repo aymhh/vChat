@@ -61,7 +61,7 @@
 		
 		
 		<!--Input field for email-->
-		<div class="loginBarFonts" style="top: 2%;">
+		<div class="loginBarFonts" style="top: 1%;">
 			<i>email address</i>
 		</div>
 		<input class="loginBar" required id="email" type="email" style="margin-top: 2%;" value="user email goes here">
@@ -86,7 +86,7 @@
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i>confirm password</i>
 		</div>
-		<input class="loginBar" id="confrimPwd" type="password" required minlength="6" value="user password goes here">
+		<input class="loginBar" id="confirmPwd" type="password" required minlength="6" value="user password goes here">
 
 		<script>
 			// construsctor for the elements to be used
@@ -104,10 +104,19 @@
 				document.getElementById("email").value = doc[`email`];
 				document.getElementById("uid").value = doc[`username`];
 				document.getElementById("pwd").value = doc[`password`];
+				document.getElementById("confirmPwd").value = doc[`password`];
 			})
+
+			const password = document.getElementById("pwd");
+			const confirmPassword = document.getElementById("confirmPwd")
+			password.addEventListener("input", function (e) {
+				confirmPassword.value = ""
+			})
+			
 
 			// creates a event listener to know when the button is pressed and what to do when it happens
 			updateButton.addEventListener('submit', function (e) {
+
 
 				e.preventDefault();
 
@@ -115,12 +124,13 @@
 				const email = document.getElementById("email");
 				const username = document.getElementById("uid");
 				const password = document.getElementById("pwd");
+				const confirmPassword = document.getElementById("confirmPwd")
+
+				if(confirmPassword.value !== password.value) return alert("password confirm does not match the updated password")
 
 				// updates the values when the button is pressed (even if the details hasn't changed)
 
-				db.collection('users').doc({
-					username: username.value
-				}).set({
+				db.collection('users').doc({ username: username.value }).set({
 					email: email.value,
 					username: username.value,
 					password: password.value,
