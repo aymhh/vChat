@@ -9,7 +9,8 @@ module.exports = {
         loginPage: resolve(__dirname, 'loginPage.html'),
         profilePage: resolve(__dirname, 'profilePage.html'),
         rooms: resolve(__dirname, 'rooms.html'),
-        signUpPage: resolve(__dirname, 'signUpPage.html')
+        signUpPage: resolve(__dirname, 'signUpPage.html'),
+        mobileSite: resolve(__dirname, 'mobileSite.html')
       }
     }
   }
