@@ -26,7 +26,7 @@
 	<!--Anti Mobile Login, Will redirect them to another panel to make sure they don't access the website on mobile-->
 	<script>
 		function mobileSite() {
-			if (/Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 				return window.location.href = '/mobileSite.html'
 		}
 	</script>
