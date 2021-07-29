@@ -115,16 +115,15 @@
 			// creates a event listener to know when the button is pressed and what to do when it happens
 			updateButton.addEventListener('submit', function (e) {
 
-
-				e.preventDefault();
+				e.preventDefault(); // prevents the button from making automatic submittion without actually going thru validation
 
 				const icon = document.getElementById("pfp");
 				const email = document.getElementById("email");
 				const username = document.getElementById("uid");
 				const password = document.getElementById("pwd");
-				const confirmPassword = document.getElementById("confirmPwd")
+				const confirmPassword = document.getElementById("confirmPwd");
 
-				if(confirmPassword.value !== password.value) return alert("password confirm does not match the updated password")
+				if(confirmPassword.value !== password.value) return alert("password confirm does not match the updated password");
 
 				// updates the values when the button is pressed (even if the details hasn't changed)
 
