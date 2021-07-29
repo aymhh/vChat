@@ -96,9 +96,7 @@
 			const updateButton = document.getElementById("accProfileForm");
 
 			// gets the user's data from the page cookie and uses that to fetch the user's details, it further updates it
-			db.collection('users').doc({
-				username: pageCookie
-			}).get().then(doc => {
+			db.collection('users').doc({username: pageCookie }).get().then(doc => {
 				document.getElementById("profileAccountHeader").src = doc[`icon`]
 				document.getElementById("pfp").value = doc[`icon`];
 				document.getElementById("email").value = doc[`email`];
