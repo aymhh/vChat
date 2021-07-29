@@ -83,8 +83,6 @@ webcamButton.onclick = async () => {
 
   // allows access ot the next buttons
   callButton.disabled = false;
-  callButton.style.ba
-  scrollDownElement.style.display = "none"
   answerButton.disabled = false;
   webcamButton.disabled = true;
 }
