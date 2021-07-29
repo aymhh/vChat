@@ -130,7 +130,7 @@ html, body {
 
 .accountProfileContainer {
 	margin-top: 5%;
-	height: 90%;
+	height: 95%;
 	width: 30%;
 	background-color: white;  
 }
@@ -175,7 +175,7 @@ html, body {
 .loginBar {
 	position: relative;
 	width: 78%;
-	height: 11%;
+	height: 10%;
 	background-color: #354163;
 	margin-left: 11%;
 	border: none;

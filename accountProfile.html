@@ -42,22 +42,22 @@
 	</div>
 
 	<!--Beginning of the container for the login form-->
-	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET">
+	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET" style="position: absolute; margin-top: 10%;">
 		<!--Their profile picture would be showing here-->
 		<label class="profileAccountHeader">
-			<img style="position: relative; top: -25px;" class="userIcon2" id="profileAccountHeader"
+			<img style="position: relative;" class="userIcon2" id="profileAccountHeader"
 				src="/images/testIcon.jpg" width="150" height="150" alt="profilePicture">
 		</label>
 
 		
 		<!--input feild for the profile picture URL-->
-		<div class="loginBarFonts" style="top: 13%;">
+		<div class="loginBarFonts" style="top: 12%;">
 			<i><abbr
-					title="Paste the direct link to the image, you can upload your image to discord and 'Copy Link' for free and easy hosting!">change
+					title="Paste the direct link to the image, you can upload your image to Discord and 'Copy Link' for free and easy hosting!">change
 					profile picture?</abbr></i>
 		</div>
-		<input class="loginBar" required id="pfp" type="url" style="margin-top: 16%;"
-			placeholder="paste direct url of the image" value="user profile picture link goes here">
+		<input class="loginBar" required id="pfp" type="url" style="margin-top: 20%;"
+			placeholder="paste direct url of the image" value="user profile picture link goes here" title="Paste the direct link to the image, you can upload your image to discord and 'Copy Link' for free and easy hosting!">
 		
 		
 		<!--Input field for email-->
@@ -72,7 +72,7 @@
 			<i><abbr
 					title="You are not able to change your username. If you wish to go under a new allias, create a new account.">username</abbr></i>
 		</div>
-		<input class="loginBar" id="uid" type="text" required readonly value="username goes here">
+		<input class="loginBar" id="uid" type="text" required readonly value="username goes here" title="unable to change username">
 
 
 		<!--Input field for password-->
@@ -86,7 +86,7 @@
 		<div class="loginBarFonts" style="margin-top: 2%;">
 			<i>confirm password</i>
 		</div>
-		<input class="loginBar" id="confirmPwd" type="password" required minlength="6" value="user password goes here">
+		<input class="loginBar" id="confirmPwd" type="password" required value="user password goes here">
 
 		<script>
 			// construsctor for the elements to be used
@@ -142,7 +142,7 @@
 			})
 		</script>
 
-		<button type="submit" id="saveButton" class="saveButton" style="margin-bottom: 25%;">save!</button>
+		<button type="submit" id="saveButton" class="saveButton">save!</button>
 	</form>
 </body>
 
