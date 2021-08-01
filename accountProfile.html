@@ -42,7 +42,7 @@
 	</div>
 
 	<!--Beginning of the container for the login form-->
-	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET" style="position: absolute; margin-top: 10%;">
+	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET">
 		<!--Their profile picture would be showing here-->
 		<label class="profileAccountHeader">
 			<img style="position: relative;" class="userIcon2" id="profileAccountHeader"
@@ -93,11 +93,13 @@
 
 			const db = new Localbase("vChatDataBase");
 			const pageCookie = Cookies.get('cookieUsername') // gets the page cookie
-			const updateButton = document.getElementById("accProfileForm");
+			const updateButton = document.getElementById("accProfileForm"); // confrim button
+			console.log(document.getElementById("accProfileForm").style.backgroundImage)
 
 			// gets the user's data from the page cookie and uses that to fetch the user's details, it further updates it
 			db.collection('users').doc({username: pageCookie }).get().then(doc => {
 				document.getElementById("profileAccountHeader").src = doc[`icon`]
+				document.getElementById("accProfileForm").style.backgroundImage = `url("${doc[` icon`]}")`
 				document.getElementById("pfp").value = doc[`icon`];
 				document.getElementById("email").value = doc[`email`];
 				document.getElementById("uid").value = doc[`username`];
@@ -105,6 +107,7 @@
 				document.getElementById("confirmPwd").value = doc[`password`];
 			})
 
+			console.log(document.getElementById("accProfileForm").style.backgroundImage)
 			const password = document.getElementById("pwd");
 			const confirmPassword = document.getElementById("confirmPwd")
 			password.addEventListener("input", function (e) {

@@ -61,7 +61,8 @@ const scrollDownElement = document.getElementById("scrollDown")
 
 
 // setup media sources
-webcamButton.onclick = async () => {
+window.onload = async () => {
+  alert("🚨 you must grant the website access to your webcam and microphone to use this page.")
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }); // when the "get media" button is clicked hten the browser will ask to the users to fetch their webcam and mic
   remoteStream = new MediaStream(); 
   
@@ -84,7 +85,6 @@ webcamButton.onclick = async () => {
   // allows access ot the next buttons
   callButton.disabled = false;
   answerButton.disabled = false;
-  webcamButton.disabled = true;
 }
 
 // creating a call room/offer when the second button is pressed.
@@ -100,7 +100,8 @@ callButton.onclick = async () => {
   // get candidates for caller, save to db
   pc.onicecandidate = (event) => {
     event.candidate && offerCandidates.add(event.candidate.toJSON());
-  };
+
+}
 
   
 
@@ -198,32 +199,3 @@ db.collection('users').doc({ username: cookieUsername }).get().then(doc => {
   document.getElementById("hostBGChat").src = doc[`icon`];
 })
 
-// mic button
-muteButton.addEventListener("click", function (e) {
-  const micOpen = "micOpenLogo.png"
-  const micClose = "micClosedLogo.png"
-  let micImageSrc = document.getElementById("micImage").src
-  if (micImageSrc.endsWith(micOpen)) {
-    document.getElementById("muteFunction").title = "you are currenly muted! click here if you want to be unmuted!"
-    return document.getElementById("micImage").src = `./assets/images/${micClose}`
-  } else if (micImageSrc.endsWith(micClose)) {
-    document.getElementById("muteFunction").title = "you are currenly unmuted! click here if you want to be muted!"
-    return document.getElementById("micImage").src = `./assets/images/${micOpen}`
-  }
-}); 
-
-
-// camera button
-cameraButton.addEventListener("click", function (e) {
-  const camOpen = "cameraOnLogo.png"
-  const camClose = "cameraOffLogo.png"
-  let camImageSrc = document.getElementById("camImage").src
-
-  if (camImageSrc.endsWith(camOpen)) {
-    cameraButton.title = "your camera is currenly off! click here if you want to turn it on!"
-    return document.getElementById("camImage").src = `./assets/images/${camClose}`
-  } else if (camImageSrc.endsWith(camClose)) {
-    cameraButton.title = "your camera is currenly on! click here if you want to turn it off!"
-    return document.getElementById("camImage").src = `./assets/images/${camOpen}`
-  }
-});

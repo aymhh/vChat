@@ -31,9 +31,11 @@
 		function mobileSite() {
 			if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
 				return window.location.href = '/mobileSite.html'
-			document.body.style.zoom = "80%";
 		}
+
+
 	</script>
+
 
 
 	<!--vchat Logo-->
@@ -79,41 +81,16 @@
 		</div>
 	</div>
 
-	<div class="utilities">
-		<!--utility functions such as mute microphone or disable camera-->
-		<button class="muteFunction" id="muteFunction"
-			title="you are currenly unmuted! click here if you want to be muted!">
-			<!--mute function-->
-			<img class="micImage" id="micImage" src="/images/micOpenLogo.png" alt="micIcon" height="100" width="100">
-		</button>
 
-
-		<button class="camFunction" id="camFunction"
-			title="your camera is currenly on! click here if you want to turn it off!">
-			<!--camera function-->
-			<img class="camImage" id="camImage" src="/images/cameraOnLogo.png" alt="camIcon" height="100" width="100">
-		</button>
-	</div>
-
-	<p class="scrollDown">
-		scroll down. . .
-	</p>
 
 	<!--call initiator builer-->
 	<div class="callConstructorContainer">
 		<div class="constructorElements">
-			<div id="st-box">
-				<label id="firstBox" class="startupBoxes">allow media access</label>
-				<!--this is where the websites asks the user's for the user's webcam and micrphone access-->
-				<p class="subtext" style="color: black;">you <i>must</i> allow access to your webcam and microphone</p>
-				<button class="bufferBoxes" style="border-radius: 25px 25px 0 0; width: 50%; height: 10%;"></button>
-				<button class="startupBoxesButton" id="webcamButton">give access</button>
-				<button class="bufferBoxes" style="border-radius: 25px 25px 0 0; width: 50%; height: 10%;"></button>
-
-			</div>
 
 			<div id="nd-box">
-				<label id="secondBox" class="startupBoxes">create room id</label>
+				<div class="startupBoxes">
+					<label id="secondbox" >create room id</label>
+				</div>
 				<!--generates the chat id for the user to distrubte-->
 				<p class="subtext" style="color: black;">generate an id to invite users with</p>
 				<button disabled class="startupBoxesButton" id="callButton"
@@ -124,7 +101,9 @@
 			</div>
 
 			<div id="rd-box">
-				<label id="thirdBox" class="startupBoxes">join room</label>
+				<div class="startupBoxes">
+					<label id="thirdbox" >join room</label>
+				</div>
 				<p class="subtext" style="color: black;">if you have a chatroom id input it here join it</p>
 				<!--location for the users to input chat id to join the room-->
 				<button class="bufferBoxes" style="border-radius: 25px 25px 0 0; width: 50%; height: 10%;"> </button>
@@ -139,6 +118,8 @@
 
 	<script type="module" src="/main.js"></script>
 	<!--import's further code to assist in the video capabilities-->
+
+	<script></script>
 
 </body>
 

@@ -126,10 +126,10 @@ html, body {
 }
 
 .accountProfileContainer {
-	margin-top: 5%;
 	height: 95%;
 	width: 30%;
-	background-color: white;  
+	margin-top: 10%;
+	background-color: white;
 }
 
 
@@ -424,6 +424,10 @@ html, body {
 
 }
 
+.callFunctions {
+	background-color: white;
+}
+
 .roomMakerBar:hover {
 	filter: brightness(70%);
 }
@@ -435,53 +439,39 @@ html, body {
 
 .callConstructorContainer {
 	position:absolute;
+	text-align: center;
+	bottom: 5%;
+	left: 31%;
 }
 
 .constructorElements {
-	margin-top: 90%;
-	width:1080px;
-	text-align: center;
-	height:300px;
+	display: inline-flex;
 	background-color:transparent;
-	font-size: 10px;
 	font-weight: bold;
 }
 
-#st-box {
-	display: inline-block;
-	height: 100%;
-	width:30%;
-	padding: 10px;
-	background-color:white;
-}
 
 #nd-box {
-	display: inline-block;
-	width:30%;
+	width: 40%;
 	height: 100%;
 	padding: 10px;
 	background-color:white;
 }
 
 #rd-box {
-	display: inline-block;
 	height: 100%;
-	width:30%;
+	width:40%;
 	padding: 10px;
 	background-color: white;
 }
 
-.Boxes {
-	width: 96%;
-	height: 20%;
-	margin-left: 2%;
-	background-color: #5369ab;
-	font-family: ArkiReg;
+
+.startupBoxes {
+	font-size: 20px;
+	background-color: #5874be;
 	color: white;
-	font-size: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .startupBoxesButton {
@@ -490,7 +480,7 @@ html, body {
 	color: white;
 	border: none;
 	width: 70%;
-	height: 20%;
+	height: 30%;
 	font-size: 20px;
 	font-family: ArkiThin;
 	font-weight: bold;
