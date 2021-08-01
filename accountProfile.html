@@ -36,8 +36,7 @@
 	<!--Website Logo-->
 	<div class="logo2">
 		<a href="./index.html">
-			<img src="images\vchatLogo.png"
-				style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
+			<img src="images\vchatLogo.png" style="position:absolute; top: 5%; left: 3%;" width="10.3%" alt="vChatLogo">
 		</a>
 	</div>
 
@@ -45,11 +44,11 @@
 	<form id="accProfileForm" class="accountProfileContainer" action="./profilePage.html" method="GET">
 		<!--Their profile picture would be showing here-->
 		<label class="profileAccountHeader">
-			<img style="position: relative;" class="userIcon2" id="profileAccountHeader"
-				src="/images/testIcon.jpg" width="150" height="150" alt="profilePicture">
+			<img style="position: relative;" class="userIcon2" id="profileAccountHeader" src="/images/testIcon.jpg"
+				width="150" height="150" alt="profilePicture">
 		</label>
 
-		
+
 		<!--input feild for the profile picture URL-->
 		<div class="loginBarFonts" style="top: 12%;">
 			<i><abbr
@@ -57,9 +56,10 @@
 					profile picture?</abbr></i>
 		</div>
 		<input class="loginBar" required id="pfp" type="url" style="margin-top: 20%;"
-			placeholder="paste direct url of the image" value="user profile picture link goes here" title="Paste the direct link to the image, you can upload your image to discord and 'Copy Link' for free and easy hosting!">
-		
-		
+			placeholder="paste direct url of the image" value="user profile picture link goes here"
+			title="Paste the direct link to the image, you can upload your image to discord and 'Copy Link' for free and easy hosting!">
+
+
 		<!--Input field for email-->
 		<div class="loginBarFonts" style="top: 1%;">
 			<i>email address</i>
@@ -72,7 +72,8 @@
 			<i><abbr
 					title="You are not able to change your username. If you wish to go under a new allias, create a new account.">username</abbr></i>
 		</div>
-		<input class="loginBar" id="uid" type="text" required readonly value="username goes here" title="unable to change username">
+		<input class="loginBar" id="uid" type="text" required readonly value="username goes here"
+			title="unable to change username">
 
 
 		<!--Input field for password-->
@@ -97,7 +98,7 @@
 			console.log(document.getElementById("accProfileForm").style.backgroundImage)
 
 			// gets the user's data from the page cookie and uses that to fetch the user's details, it further updates it
-			db.collection('users').doc({username: pageCookie }).get().then(doc => {
+			db.collection('users').doc({ username: pageCookie }).get().then(doc => {
 				document.getElementById("profileAccountHeader").src = doc[`icon`]
 				document.getElementById("accProfileForm").style.backgroundImage = `url("${doc[` icon`]}")`
 				document.getElementById("pfp").value = doc[`icon`];
@@ -113,7 +114,7 @@
 			password.addEventListener("input", function (e) {
 				confirmPassword.value = ""
 			})
-			
+
 
 			// creates a event listener to know when the button is pressed and what to do when it happens
 			updateButton.addEventListener('submit', function (e) {
@@ -126,10 +127,32 @@
 				const password = document.getElementById("pwd");
 				const confirmPassword = document.getElementById("confirmPwd");
 
-				if(confirmPassword.value !== password.value) return alert("password confirm does not match the updated password");
+				if (confirmPassword.value !== password.value) return alert("password confirm does not match the updated password"); // check if the password don't match
+
+				// username validation, converted to a lowercase to streamline filtering against the array
+				const usernameString = username.value.toLowerCase();
+				const emailString = email.value.toLowerCase();
+				const passwordString = password.value.toLowerCase()
+
+				if (username.value.includes(" ")) return alert("your username can NOT have any spaces") // space checker in username
+				if (username.value.length >= 15) return alert("your username length is too long! keep it between 4-15 characters") // max length validator
+				// bad word array, used to filter out any bad word detected within the userame using a for loop
+				const slurArray = [
+					"anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "blow job", "bollock", "bollok", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "f u c k", "fudgepacker", "fudge packer", "flange", "Goddamn", "God damn", "hell", "homo", "jerk", "jizz", "knobend", "knob end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "omg", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "s hit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"
+				]
+				for (const x = 0; x < slurArray.length; x++) { // a massive for loop that check if the details written exist inside the slurArray
+					if (usernameString.indexOf(slurArray[x]) != -1) return alert("you are not allowed to use any inappropriate names within your username. pick something sensible")
+					if (emailString.indexOf(slurArray[x]) != -1) return alert("you are not allowed to use any inappropriate names within your email. pick something sensible")
+					if (passwordString.indexOf(slurArray[x]) != -1) return alert("you are not allowed to use any inappropriate names within your password. pick something sensible")
+					if (icon.value.toLowerCase().indexOf(slurArray[x]) != -1)  return alert("potentially inappropriate profile picture submitted, please use another link.")
+				}
+				// password validations
+				if (password.value.includes(" ")) return alert("your password can NOT have any spaces")
+				if (password.value.length >= 15) return alert("your password length is too long! keep it between 4-15 characters")
+
+
 
 				// updates the values when the button is pressed (even if the details hasn't changed)
-
 				db.collection('users').doc({ username: username.value }).set({
 					email: email.value,
 					username: username.value,

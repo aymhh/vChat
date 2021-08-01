@@ -77,12 +77,25 @@
 
         e.preventDefault();
 
-        // username validation
+        // username validation, converted to a lowercase to streamline filtering against the array
         const usernameString = username.value.toLowerCase();
-        const usernameArray = usernameString.split(" ");
+        const emailString = email.value.toLowerCase();
+        const passwordString = password.value.toLowerCase()
 
-        if (username.value.includes(" ")) return alert("your username can NOT have any spaces")
-
+        if (username.value.includes(" ")) return alert("your username can NOT have any spaces") // space checker in username
+        if (username.value.length >= 15) return alert("your username length is too long! keep it between 4-15 characters") // max length validator
+        // bad word array, used to filter out any bad word detected within the userame using a for loop
+        const slurArray = [
+          "anal", "anus", "arse", "ass", "ballsack", "balls", "bastard", "bitch", "biatch", "bloody", "blowjob", "blow job", "bollock", "bollok", "boner", "boob", "bugger", "bum", "butt", "buttplug", "clitoris", "cock", "coon", "crap", "cunt", "damn", "dick", "dildo", "dyke", "fag", "feck", "fellate", "fellatio", "felching", "fuck", "f u c k", "fudgepacker", "fudge packer", "flange", "Goddamn", "God damn", "hell", "homo", "jerk", "jizz", "knobend", "knob end", "labia", "lmao", "lmfao", "muff", "nigger", "nigga", "omg", "penis", "piss", "poop", "prick", "pube", "pussy", "queer", "scrotum", "sex", "shit", "s hit", "sh1t", "slut", "smegma", "spunk", "tit", "tosser", "turd", "twat", "vagina", "wank", "whore", "wtf"
+        ]
+        for (const x = 0; x < slurArray.length; x++) { // a massive for loop that check if the details written exist inside the slurArray
+          if (usernameString.indexOf(slurArray[x]) != -1) return alert("you are not allowed to use any inappropriate names within your username. pick something sensible")
+          if (emailString.indexOf(slurArray[x]) != -1) return alert("you are not allowed to use any inappropriate names within your email. pick something sensible")
+          if (passwordString.indexOf(slurArray[x]) != -1) return alert("you are not allowed to use any inappropriate names within your password. pick something sensible")
+        } 
+        // password validatons
+        if (password.value.includes(" ")) return alert("your password can NOT have any spaces")
+        if (password.value.length >= 15) return alert("your password length is too long! keep it between 4-15 characters")
 
 
         db.collection('users').doc({
