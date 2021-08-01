@@ -199,3 +199,9 @@ db.collection('users').doc({ username: cookieUsername }).get().then(doc => {
   document.getElementById("hostBGChat").src = doc[`icon`];
 })
 
+
+answerButton.addEventListener("click", function (e) {
+  if(joinCallInput.value.length === 0) {
+    alert("you must input an id")
+  }
+})
