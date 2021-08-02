@@ -97,7 +97,7 @@
         if (password.value.includes(" ")) return alert("your password can NOT have any spaces")
         if (password.value.length >= 15) return alert("your password length is too long! keep it between 4-15 characters")
 
-
+        // creates the docment add's it to the database
         db.collection('users').doc({
           username: username.value
         }).get().then(document => {
