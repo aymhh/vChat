@@ -79,15 +79,14 @@
         db.config.debug = false
 
 
-        db.collection('users').doc({
-          username: username.value
-        }).get().then(document => {
+        db.collection('users').doc({ username: username.value }).get().then(document => {
           if (document === undefined) {
             alert("No user exists with this username!")
           } else {
             if (document['password'] !== password.value) {
               alert("Incorrect password!")
             } else {
+              Cookies.set('cookieUsername', username.value)
               return window.location.href = './profilePage.html'
             };
           };
