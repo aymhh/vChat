@@ -201,8 +201,15 @@ db.collection('users').doc({ username: cookieUsername }).get().then(doc => {
 })
 
 
+
+// if no id was entered the an alert saying it's needed
 answerButton.addEventListener("click", function (e) {
   if(joinCallInput.value.length === 0) {
     alert("you must input an id")
   }
+})
+
+//error handler
+window.addEventListener("unhandledrejection" , function (e) {
+  console.log(e)
 })
