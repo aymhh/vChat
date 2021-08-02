@@ -64,6 +64,8 @@ const scrollDownElement = document.getElementById("scrollDown")
 window.onload = async () => {
   alert("🚨 you must grant the website access to your webcam and microphone to use this page.")
   localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }); // when the "get media" button is clicked hten the browser will ask to the users to fetch their webcam and mic
+  console.log(localStream)
+
   remoteStream = new MediaStream(); 
   
   // Push tracks from local stream to peer connection
@@ -71,7 +73,7 @@ window.onload = async () => {
     pc.addTrack(track, localStream);
   });
 
-  // Pull tracks from remote stream, add to video stream
+  // pull tracks from guest stream, add to video stream for users to see
   pc.ontrack = (event) => {
     event.streams[0].getTracks().forEach((track) => {
       remoteStream.addTrack(track);
@@ -101,9 +103,8 @@ callButton.onclick = async () => {
   pc.onicecandidate = (event) => {
     event.candidate && offerCandidates.add(event.candidate.toJSON());
 
-}
-
-  
+  }
+ 
 
   // create the actual offer using the generated code from line 96
   const offerDescription = await pc.createOffer();
